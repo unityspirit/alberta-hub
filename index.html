@@ -124,8 +124,15 @@
       </div>
 
       <div class="header-actions">
+        <a href="international/index.html" class="btn-office-link" style="background:linear-gradient(135deg, rgba(212,175,55,0.22), rgba(16,185,129,0.2)); border-color:rgba(212,175,55,0.55); color:#F3E5AB;" title="Открыть Международный Штаб 5-в-1">
+          <span>🌌 Штаб 5-в-1</span>
+          <span>↗</span>
+        </a>
+        <a href="https://t.me/lermontovplusbot?start=aliashirani" target="_blank" class="btn-office-link" style="border-color:rgba(56,189,248,0.5); color:#38BDF8;" title="Личный Telegram-бот @lermontovplusbot">
+          <span>🤖 Бот</span>
+        </a>
         <a href="https://unityspirit.github.io/remote-agents-control/" target="_blank" class="btn-office-link" title="Открыть Виртуальный Офис Global Spirit Group">
-          <span>Виртуальный Офис</span>
+          <span>Офис</span>
           <span>↗</span>
         </a>
         <button class="btn-icon" onclick="HUB.toggleTheme()" title="Переключить тему">🌓</button>
@@ -670,18 +677,54 @@
         </p>
       </div>
 
-      <div class="kanban-toolbar">
-        <div class="kanban-filters">
-          <button class="kanban-filter-btn active" onclick="HUB.filterKanban('all', this)">Все задачи</button>
+      <div class="kanban-toolbar" style="flex-wrap:wrap; gap:10px;">
+        <div class="kanban-filters" style="flex-wrap:wrap;">
+          <button class="kanban-filter-btn active" onclick="HUB.filterKanban('all', this)">Все (<span id="kCntAll">0</span>)</button>
+          <button class="kanban-filter-btn" style="border-color:rgba(244,63,94,0.55); color:#FDA4AF;" onclick="HUB.filterKanban('today', this)">🔥 Сегодня (<span id="kCntToday">0</span>)</button>
+          <button class="kanban-filter-btn" style="border-color:rgba(212,175,55,0.55); color:#F3E5AB;" onclick="HUB.filterKanban('main', this)">🎯 Главные (<span id="kCntMain">0</span>)</button>
+          <button class="kanban-filter-btn" style="border-color:rgba(168,85,247,0.55); color:#D8B4FE;" onclick="HUB.filterKanban('intermediate', this)">🪜 Промежуточные (<span id="kCntInter">0</span>)</button>
+          <button class="kanban-filter-btn" style="border-color:rgba(56,189,248,0.55); color:#7DD3FC;" onclick="HUB.filterKanban('parallel', this)">⚡ Параллельные (<span id="kCntParallel">0</span>)</button>
           <button class="kanban-filter-btn" onclick="HUB.filterKanban('alberta', this)">👤 Альберта</button>
           <button class="kanban-filter-btn" onclick="HUB.filterKanban('gsg', this)">⚡ Global Spirit</button>
         </div>
-        <button class="auth-btn-primary" style="width: auto; padding: 8px 18px; margin: 0; font-size: 0.85rem;" onclick="HUB.addNewTask()">
-          <span>+ Новая задача</span>
-        </button>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+          <button class="kanban-filter-btn active" id="btnModeTiers" onclick="HUB.setKanbanViewMode('tiers')" title="Группировка по 4 категориям">🗂 4 Группы</button>
+          <button class="kanban-filter-btn" id="btnModeStatus" onclick="HUB.setKanbanViewMode('status')" title="Колонки статусов">📋 По статусу</button>
+          <button class="auth-btn-primary" style="width: auto; padding: 8px 18px; margin: 0; font-size: 0.85rem;" onclick="HUB.addNewTask()">
+            <span>+ Новая задача</span>
+          </button>
+        </div>
       </div>
 
-      <div class="kanban-board">
+      <!-- 4-TIER GROUPED VIEW -->
+      <div id="kanbanTierBoard" class="kanban-board" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 18px;">
+        <div class="kanban-col" style="border-top: 3px solid #F43F5E;">
+          <div class="kanban-col-header">
+            <div class="kanban-col-title"><span>🔥 Сегодняшние задачи</span><span class="kanban-badge-count" id="tierCntToday">0</span></div>
+          </div>
+          <div id="tierColToday" style="display:flex; flex-direction:column; gap:10px;"></div>
+        </div>
+        <div class="kanban-col" style="border-top: 3px solid #D4AF37;">
+          <div class="kanban-col-header">
+            <div class="kanban-col-title"><span>🎯 Главные задачи</span><span class="kanban-badge-count" id="tierCntMain">0</span></div>
+          </div>
+          <div id="tierColMain" style="display:flex; flex-direction:column; gap:10px;"></div>
+        </div>
+        <div class="kanban-col" style="border-top: 3px solid #A855F7;">
+          <div class="kanban-col-header">
+            <div class="kanban-col-title"><span>🪜 Промежуточные</span><span class="kanban-badge-count" id="tierCntInter">0</span></div>
+          </div>
+          <div id="tierColInter" style="display:flex; flex-direction:column; gap:10px;"></div>
+        </div>
+        <div class="kanban-col" style="border-top: 3px solid #38BDF8;">
+          <div class="kanban-col-header">
+            <div class="kanban-col-title"><span>⚡ Параллельные</span><span class="kanban-badge-count" id="tierCntParallel">0</span></div>
+          </div>
+          <div id="tierColParallel" style="display:flex; flex-direction:column; gap:10px;"></div>
+        </div>
+      </div>
+
+      <div class="kanban-board" id="kanbanStatusBoard" style="display:none;">
         <!-- Col 1 -->
         <div class="kanban-col">
           <div class="kanban-col-header">

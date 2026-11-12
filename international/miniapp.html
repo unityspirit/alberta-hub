@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#080B10">
+  <title>Alberta Shirani — Telegram Mini App</title>
+
+  <!-- TELEGRAM WEB APP SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <style>
+    body {
+      background-color: #080B10;
+      color: var(--text-main);
+      padding-bottom: 80px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .tma-container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .tma-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0 16px 0;
+      border-bottom: 1px solid var(--border-glass);
+      margin-bottom: 20px;
+    }
+
+    /* Bottom Navigation Bar */
+    .tma-bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(14, 18, 26, 0.95);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0 calc(10px + env(safe-area-inset-bottom, 0px)) 0;
+      z-index: 999;
+    }
+    .tma-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: var(--transition);
+    }
+    .tma-nav-item.active {
+      color: var(--gold-starlight);
+    }
+    .tma-nav-icon {
+      font-size: 1.25rem;
+    }
+
+    .tma-tab-view {
+      display: none;
+    }
+    .tma-tab-view.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tma-card {
+      background: rgba(20, 27, 38, 0.75);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .tma-cart-badge {
+      background: var(--gold-starlight);
+      color: #080B10;
+      border-radius: var(--radius-full);
+      padding: 2px 7px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      margin-left: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="quantum-canvas"></canvas>
+
+  <div class="tma-container">
+
+    <!-- TMA TOP HEADER -->
+    <header class="tma-header">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--gold-starlight), var(--emerald-primary)); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+          👑
+        </div>
+        <div>
+          <h2 style="font-family: var(--font-heading); font-size: 1.15rem; color: #FFFFFF; line-height: 1.1;">Alberta Shirani</h2>
+          <span style="font-size: 0.7rem; color: var(--gold-starlight); text-transform: uppercase;">Academy Mini App</span>
+        </div>
+      </div>
+
+      <select id="currencySelector" class="currency-select" onchange="AlbertaCurrency.setCurrency(this.value); haptic();">
+        <option value="RUB" selected>RUB (₽)</option>
+        <option value="USD">USD ($)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="USDT">USDT (₮)</option>
+      </select>
+    </header>
+
+    <!-- ==================== TAB 1: DIAGNOSTICS & QUIZ ==================== -->
+    <main id="tab-audit" class="tma-tab-view active">
+      <div class="tma-card" style="text-align: center; border-color: var(--border-gold);">
+        <span class="badge-gold">Экспресс-Аудит</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.45rem; color: #FFFFFF; margin: 10px 0 8px 0;">
+          Диагностика Утечек Опоры
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 16px;">
+          Всего 3 вопроса, чтобы определить точку истощения и зафиксировать грант 20%.
+        </p>
+
+        <div id="tmaStep1">
+          <p style="font-size: 0.9rem; font-weight: 600; color: var(--gold-light); margin-bottom: 12px; text-align: left;">
+            1. Что сейчас больше всего разрушает ваш ресурс?
+          </p>
+          <button class="quiz-option" style="width: 100%; text-align: left;" onclick="tmaAnswer(1, 'Токсичные связи и чувство вины', 30)">
+            💔 Отношения и границы
+          </button>
+          <button class="quiz-option" style="width: 100%; text-align: left;" onclick="tmaAnswer(1, 'Выгорание на работе и потолок чека', 25)">
+            💼 Карьера и финансовый тупик
+          </button>
+          <button class="quiz-option" style="width: 100%; text-align: left;" onclick="tmaAnswer(1, 'Хроническая усталость тела', 25)">
+            🔋 Истощение и психосоматика
+          </button>
+        </div>
+
+        <div id="tmaStep2" style="display: none;">
+          <p style="font-size: 0.9rem; font-weight: 600; color: var(--gold-light); margin-bottom: 12px; text-align: left;">
+            2. Ваша реакция на нарушение личных границ:
+          </p>
+          <button class="quiz-option" style="width: 100%; text-align: left;" onclick="tmaAnswer(2, 'Терплю и коплю обиду внутри', 30)">
+            🤐 Терплю и молчу
+          </button>
+          <button class="quiz-option" style="width: 100%; text-align: left;" onclick="tmaAnswer(2, 'Взрываюсь и виню себя', 25)">
+            💥 Взрываюсь скандалом
+          </button>
+          <button class="quiz-option" style="width: 100%; text-align: left;" onclick="tmaAnswer(2, 'Ухожу в глухую изоляцию', 20)">
+            🧊 Ухожу в закрытость
+          </button>
+        </div>
+
+        <div id="tmaStep3" style="display: none;">
+          <p style="font-size: 0.9rem; font-weight: 600; color: var(--gold-light); margin-bottom: 12px; text-align: left;">
+            3. К какому главному результату вы стремитесь?
+          </p>
+          <button class="quiz-option" style="width: 100%; text-align: left;" onclick="tmaAnswer(3, 'Несокрушимая внутренняя опора', 30)">
+            👑 Железная опора на себя
+          </button>
+          <button class="quiz-option" style="width: 100%; text-align: left;" onclick="tmaAnswer(3, 'Легкий выход в масштаб и высокий чек', 25)">
+            🚀 Масштаб и свобода денег
+          </button>
+        </div>
+
+        <div id="tmaResult" style="display: none;">
+          <div style="font-size: 2.4rem; margin-bottom: 8px;">💎</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold-starlight); margin-bottom: 6px;">
+            Индекс истощения: <span id="tmaScoreText" style="color: var(--emerald-primary);">82%</span>
+          </h4>
+          <p style="color: var(--text-muted); font-size: 0.82rem; margin-bottom: 16px;">
+            Вам показан старт с интенсива «Точка Сборки» и поддержка в Клубе «Искусство Выбирать Себя».
+          </p>
+
+          <a id="tmaSendTgBtn" href="https://t.me/Alberta" target="_blank" class="btn-primary" style="width: 100%; font-size: 0.9rem;" onclick="haptic();">
+            ✈️ Отправить результат в чат @Alberta
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- ==================== TAB 2: CATALOG ==================== -->
+    <main id="tab-catalog" class="tma-tab-view">
+      <div class="tma-card">
+        <span class="badge-emerald">Ступень 1</span>
+        <h4 style="font-family: var(--font-heading); font-size: 1.25rem; color: #FFFFFF; margin: 8px 0 4px 0;">
+          Интенсив «Точка Сборки»
+        </h4>
+        <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 12px;">
+          5 аудио-практик для быстрой остановки тревоги и сборки первичной опоры.
+        </p>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold-starlight); font-weight: 700;" data-price-usd="5">
+            490 ₽
+          </div>
+          <button class="btn-primary" style="padding: 6px 14px; font-size: 0.8rem;" onclick="addToCart('Точка Сборки', 5); haptic();">
+            + В корзину
+          </button>
+        </div>
+      </div>
+
+      <div class="tma-card" style="border-color: var(--border-gold);">
+        <span class="badge-gold">Флагман</span>
+        <h4 style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--gold-starlight); margin: 8px 0 4px 0;">
+          Клуб «Искусство Выбирать Себя»
+        </h4>
+        <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 12px;">
+          Еженедельные зум-разборы с Альбертой Shirani, сообщество сильных женщин 30–50 лет.
+        </p>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold-starlight); font-weight: 700;" data-price-usd="50">
+            $50 / мес
+          </div>
+          <button class="btn-primary" style="padding: 6px 14px; font-size: 0.8rem;" onclick="addToCart('Клуб Искусство Выбирать Себя', 50); haptic();">
+            + В корзину
+          </button>
+        </div>
+      </div>
+
+      <div class="tma-card">
+        <span class="badge-gold">VIP Менторство</span>
+        <h4 style="font-family: var(--font-heading); font-size: 1.25rem; color: #FFFFFF; margin: 8px 0 4px 0;">
+          Архитектура Опоры (VIP 3 мес)
+        </h4>
+        <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 12px;">
+          12 личных сессий 1-на-1, поддержка в Telegram, персональная пересборка сценариев жизни.
+        </p>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold-starlight); font-weight: 700;" data-price-usd="2500">
+            $2,500
+          </div>
+          <button class="btn-secondary" style="padding: 6px 14px; font-size: 0.8rem;" onclick="addToCart('VIP Архитектура Опоры', 2500); haptic();">
+            + В корзину
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ==================== TAB 3: CART ==================== -->
+    <main id="tab-cart" class="tma-tab-view">
+      <div class="tma-card">
+        <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--gold-starlight); margin-bottom: 12px;">
+          🛒 Ваша Корзина Заказа
+        </h3>
+        <div id="cartItemsList" style="min-height: 80px; font-size: 0.88rem; color: var(--text-muted);">
+          Корзина пуста. Выберите программу во вкладке «Каталог».
+        </div>
+
+        <div style="border-top: 1px solid var(--border-glass); padding-top: 14px; margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-weight: 700; color: #FFFFFF;">Итого к оплате:</span>
+          <span id="cartTotalDisplay" style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--gold-starlight); font-weight: 700;">
+            0 ₽
+          </span>
+        </div>
+
+        <a id="cartCheckoutBtn" href="https://t.me/Alberta" target="_blank" class="btn-primary" style="width: 100%; margin-top: 18px; text-align: center;" onclick="haptic();">
+          ⚡ Оформить Заказ в Telegram
+        </a>
+      </div>
+    </main>
+
+    <!-- ==================== TAB 4: DIPLOMA ==================== -->
+    <main id="tab-diploma" class="tma-tab-view">
+      <div class="tma-card" style="text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 8px;">📜</div>
+        <span class="badge-emerald">Реестр ФРДО РФ</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.45rem; color: #FFFFFF; margin: 10px 0 6px 0;">
+          Государственная Квалификация
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.82rem; line-height: 1.6; margin-bottom: 16px;">
+          <b>Специалист:</b> Ширванян Альберта Макичевна<br>
+          <b>Специализация:</b> «Психотерапевт-консультант»<br>
+          <b>Аттестационная работа:</b> «Психология личности», г. Москва, 2025 г.<br>
+          <b>Официальный статус:</b> Внесено в Федеральный реестр с правом ведения профессиональной деятельности.
+        </p>
+        <a href="https://t.me/Alberta" target="_blank" class="btn-secondary" style="width: 100%;" onclick="haptic();">
+          ✈️ Задать вопрос эксперту
+        </a>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- TMA BOTTOM NAV BAR -->
+  <nav class="tma-bottom-nav">
+    <button class="tma-nav-item active" onclick="switchTab('audit', this);">
+      <span class="tma-nav-icon">⚡</span>
+      <span>Аудит</span>
+    </button>
+    <button class="tma-nav-item" onclick="switchTab('catalog', this);">
+      <span class="tma-nav-icon">💎</span>
+      <span>Каталог</span>
+    </button>
+    <button class="tma-nav-item" onclick="switchTab('cart', this);">
+      <span class="tma-nav-icon">🛒</span>
+      <span>Корзина<span id="cartBadgeCount" class="tma-cart-badge" style="display: none;">0</span></span>
+    </button>
+    <button class="tma-nav-item" onclick="switchTab('diploma', this);">
+      <span class="tma-nav-icon">📜</span>
+      <span>Диплом</span>
+    </button>
+  </nav>
+
+  <script src="assets/js/currency.js"></script>
+  <script src="assets/js/quantum-canvas.js"></script>
+
+  <script>
+    // Initialize Telegram WebApp SDK
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+      window.Telegram.WebApp.expand();
+    }
+
+    function haptic() {
+      if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.HapticFeedback) {
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+      }
+    }
+
+    // Switch Tabs
+    function switchTab(tabId, btn) {
+      haptic();
+      document.querySelectorAll('.tma-tab-view').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tma-nav-item').forEach(el => el.classList.remove('active'));
+
+      const activeView = document.getElementById(`tab-${tabId}`);
+      if (activeView) activeView.classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    // Quiz flow
+    const tmaQuizState = { answers: [], score: 0 };
+    function tmaAnswer(step, answerText, points) {
+      haptic();
+      tmaQuizState.answers.push(answerText);
+      tmaQuizState.score += points;
+
+      if (step === 1) {
+        document.getElementById('tmaStep1').style.display = 'none';
+        document.getElementById('tmaStep2').style.display = 'block';
+      } else if (step === 2) {
+        document.getElementById('tmaStep2').style.display = 'none';
+        document.getElementById('tmaStep3').style.display = 'block';
+      } else if (step === 3) {
+        document.getElementById('tmaStep3').style.display = 'none';
+        document.getElementById('tmaResult').style.display = 'block';
+
+        const finalScore = Math.min(Math.max(tmaQuizState.score, 50), 92);
+        document.getElementById('tmaScoreText').innerText = `${finalScore}%`;
+
+        const msg = encodeURIComponent(
+          `Здравствуйте, Альберта! Прошла аудит в вашем Telegram Mini App:\n` +
+          `• Индекс истощения опоры: ${finalScore}%\n` +
+          `• 1. ${tmaQuizState.answers[0]}\n` +
+          `• 2. ${tmaQuizState.answers[1]}\n` +
+          `• 3. ${tmaQuizState.answers[2]}\n` +
+          `Хочу зафиксировать грант 20% на программу!`
+        );
+        document.getElementById('tmaSendTgBtn').href = `https://t.me/Alberta?text=${msg}`;
+      }
+    }
+
+    // Cart logic
+    const cart = [];
+    function addToCart(title, priceUSD) {
+      cart.push({ title, priceUSD });
+      updateCartUI();
+      alert(`Добавлено: ${title}`);
+    }
+
+    function updateCartUI() {
+      const listEl = document.getElementById('cartItemsList');
+      const badge = document.getElementById('cartBadgeCount');
+
+      if (cart.length === 0) {
+        listEl.innerText = 'Корзина пуста. Выберите программу во вкладке «Каталог».';
+        document.getElementById('cartTotalDisplay').innerText = AlbertaCurrency.format(0);
+        badge.style.display = 'none';
+        return;
+      }
+
+      badge.style.display = 'inline-block';
+      badge.innerText = cart.length;
+
+      let html = '';
+      let totalUSD = 0;
+      cart.forEach((item, idx) => {
+        totalUSD += item.priceUSD;
+        html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px;">` +
+                `<span>${idx+1}. ${item.title}</span>` +
+                `<span style="color:var(--gold-starlight); font-weight:700;">${AlbertaCurrency.format(item.priceUSD)}</span>` +
+                `</div>`;
+      });
+      listEl.innerHTML = html;
+      document.getElementById('cartTotalDisplay').innerText = AlbertaCurrency.format(totalUSD);
+
+      const itemsText = cart.map(i => `${i.title} (${AlbertaCurrency.format(i.priceUSD)})`).join(', ');
+      const msg = encodeURIComponent(
+        `Здравствуйте, Альберта! Оформляю заказ из Mini App:\n` +
+        `• Программы: ${itemsText}\n` +
+        `• Итого к оплате: ${AlbertaCurrency.format(totalUSD)}\n` +
+        `Прошу прислать реквизиты для оплаты!`
+      );
+      document.getElementById('cartCheckoutBtn').href = `https://t.me/Alberta?text=${msg}`;
+    }
+
+    window.addEventListener('alberta-currency-changed', updateCartUI);
+  </script>
+</body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080B10">
+  <title>Alberta Shirani — Keynote Pitch Deck 16:9 | Международная Академия</title>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <style>
+    body {
+      background-color: #05070B;
+      color: var(--text-main);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .deck-viewport {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .slide-frame {
+      width: 100%;
+      max-width: 1200px;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, rgba(20, 27, 38, 0.95) 0%, rgba(10, 14, 22, 0.98) 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.2);
+      padding: 60px 70px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .slide-frame.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .slide-watermark {
+      position: absolute;
+      bottom: 24px;
+      right: 40px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(212, 175, 55, 0.4);
+      font-family: var(--font-heading);
+    }
+
+    .slide-counter {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--gold-starlight);
+      font-weight: 700;
+    }
+
+    /* Deck controls */
+    .deck-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 40px;
+      background: rgba(8, 11, 16, 0.9);
+      border-top: 1px solid var(--border-glass);
+      font-size: 0.85rem;
+    }
+
+    /* Speaker Notes Drawer */
+    .speaker-notes-drawer {
+      position: fixed;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 900px;
+      background: rgba(14, 18, 26, 0.96);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      display: none;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      z-index: 100;
+    }
+
+    @media (max-width: 900px) {
+      .slide-frame {
+        padding: 30px;
+        aspect-ratio: auto;
+        min-height: 80vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="quantum-canvas"></canvas>
+
+  <div class="deck-viewport">
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide-frame active" id="slide-1">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge-gold">Официальная Презентация · Global Spirit Group</span>
+        <span class="slide-counter">01 / 08</span>
+      </div>
+
+      <div style="text-align: center; margin: auto 0;">
+        <div style="font-size: 3.5rem; margin-bottom: 12px;">👑</div>
+        <h1 style="font-family: var(--font-heading); font-size: 3.2rem; font-weight: 700; line-height: 1.15; color: #FFFFFF; margin-bottom: 14px;">
+          Международная Академия Трансформации Личности
+        </h1>
+        <h2 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--gold-starlight); font-weight: 400; margin-bottom: 24px;">
+          Архитектура Внутренней Опоры Alberta Shirani
+        </h2>
+        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 780px; margin: 0 auto;">
+          Выход из эмоционального выгорания, сепарация от токсичных сценариев и масштабирование частной практики женщин 30–50 лет на международный рынок.
+        </p>
+      </div>
+
+      <div class="slide-watermark">ALBERTA SHIRANI × GLOBAL SPIRIT GROUP</div>
+    </div>
+
+    <!-- SLIDE 2: THE PROBLEM -->
+    <div class="slide-frame" id="slide-2">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge-emerald">Контекст Рынка</span>
+        <span class="slide-counter">02 / 08</span>
+      </div>
+
+      <div>
+        <h2 style="font-family: var(--font-heading); font-size: 2.4rem; color: #FFFFFF; margin-bottom: 12px;">
+          Кризис 30–50 лет: Почему классические марафоны бессильны
+        </h2>
+        <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 24px;">
+          Женщина зрелого возраста сталкивается с тройной нагрузкой: семья, карьера и поиск своей аутентичной сути.
+        </p>
+
+        <div class="grid-3" style="gap: 16px;">
+          <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 18px;">
+            <h4 style="color: var(--rose-accent); margin-bottom: 8px;">1. Синдром удобной женщины</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Привычка спасать других в ущерб себе приводит к психосоматике, истощению и потере личных границ.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 18px;">
+            <h4 style="color: var(--amber-warm); margin-bottom: 8px;">2. Токсичные связи</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Окружение, тянущее назад, страх одиночества и чувство вины при попытке заявить о своих правах.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 18px;">
+            <h4 style="color: var(--gold-starlight); margin-bottom: 8px;">3. Финансовый потолок</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Обесценивание 15-летнего жизненного и профессионального опыта. Страх продавать дорого.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-watermark">ALBERTA SHIRANI · ПРОБЛЕМАТИКА</div>
+    </div>
+
+    <!-- SLIDE 3: THE METHOD -->
+    <div class="slide-frame" id="slide-3">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge-gold">Методология Опоры</span>
+        <span class="slide-counter">03 / 08</span>
+      </div>
+
+      <div>
+        <h2 style="font-family: var(--font-heading); font-size: 2.4rem; color: #FFFFFF; margin-bottom: 12px;">
+          Метод «Архитектура Внутренней Опоры»
+        </h2>
+        <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 24px;">
+          Синтез классической психологии личности, соматической телесной терапии и квантовых практик.
+        </p>
+
+        <div class="grid-3" style="gap: 16px;">
+          <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid var(--border-emerald); border-radius: var(--radius-md); padding: 18px;">
+            <h4 style="color: var(--emerald-primary); margin-bottom: 8px;">1. Возврат в тело</h4>
+            <p style="color: var(--text-main); font-size: 0.85rem;">Снятие мышечных зажимов, остановка панических атак, заземление в ресурсе здесь и сейчас.</p>
+          </div>
+          <div style="background: rgba(212, 175, 55, 0.08); border: 1px solid var(--border-gold); border-radius: var(--radius-md); padding: 18px;">
+            <h4 style="color: var(--gold-starlight); margin-bottom: 8px;">2. Сепарация и Границы</h4>
+            <p style="color: var(--text-main); font-size: 0.85rem;">Спокойное «нет» без чувства вины, выход из созависимых сценариев с партнером и родителями.</p>
+          </div>
+          <div style="background: rgba(99, 102, 241, 0.08); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 18px;">
+            <h4 style="color: var(--gold-light); margin-bottom: 8px;">3. Масштаб и Проявление</h4>
+            <p style="color: var(--text-main); font-size: 0.85rem;">Выход в авторский статус, запуск личного клуба, рост чека за консультации до $150–$500.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-watermark">ALBERTA SHIRANI · МЕТОД ОПОРЫ</div>
+    </div>
+
+    <!-- SLIDE 4: CREDENTIALS & LEGITIMACY -->
+    <div class="slide-frame" id="slide-4">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge-emerald">Юридическая Легитимность</span>
+        <span class="slide-counter">04 / 08</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;">
+        <div>
+          <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: #FFFFFF; margin-bottom: 12px;">
+            Государственный Диплом ФРДО РФ
+          </h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px;">
+            В отличие от сотен эзотерических коучей, все программы Академии строятся на базе официальной профессиональной квалификации.
+          </p>
+          <ul style="list-style: none; color: var(--text-main); font-size: 0.9rem; line-height: 1.8;">
+            <li>✓ <b>Слушатель:</b> Ширванян Альберта Макичевна</li>
+            <li>✓ <b>Квалификация:</b> Психотерапевт-консультант</li>
+            <li>✓ <b>Тема работы:</b> «Психология личности» (г. Москва, 2025 г.)</li>
+            <li>✓ <b>Реестр ФРДО РФ:</b> Официальная регистрация в госсистеме</li>
+          </ul>
+        </div>
+        <div style="background: rgba(14, 18, 26, 0.9); border: 1px solid var(--border-gold); border-radius: var(--radius-lg); padding: 28px; text-align: center;">
+          <div style="font-size: 3rem; margin-bottom: 8px;">📜</div>
+          <h3 style="font-family: var(--font-heading); color: var(--gold-starlight); font-size: 1.3rem;">Внесено в Реестр ФРДО</h3>
+          <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 8px;">
+            Право ведения профессиональной деятельности и выдачи сертификатов на международном уровне.
+          </p>
+        </div>
+      </div>
+
+      <div class="slide-watermark">ALBERTA SHIRANI · ЛЕГИТИМНОСТЬ</div>
+    </div>
+
+    <!-- SLIDE 5: 4-STAGE FUNNEL -->
+    <div class="slide-frame" id="slide-5">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge-gold">Экосистема Продуктов</span>
+        <span class="slide-counter">05 / 08</span>
+      </div>
+
+      <div>
+        <h2 style="font-family: var(--font-heading); font-size: 2.4rem; color: #FFFFFF; margin-bottom: 8px;">
+          Линейка Продуктов: От Лид-Магнита до High-Ticket
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+          Выстроенная лестница ценности, обеспечивающая высокий LTV и минимальную стоимость привлечения лида.
+        </p>
+
+        <div class="grid-4" style="gap: 12px;">
+          <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 14px;">
+            <span class="badge-gold">Бесплатно</span>
+            <h4 style="color: #FFFFFF; margin: 8px 0;">Лид-Магнит</h4>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">Telegram-квиз аудит утечек энергии и диагностика архетипа.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 14px;">
+            <span class="badge-emerald">490 ₽</span>
+            <h4 style="color: #FFFFFF; margin: 8px 0;">Трипваер</h4>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">5-дневный аудио-интенсив «Точка Сборки» с автовыдачей.</p>
+          </div>
+          <div style="background: rgba(212, 175, 55, 0.1); border: 1px solid var(--border-gold); border-radius: var(--radius-md); padding: 14px;">
+            <span class="badge-gold">$50 / мес</span>
+            <h4 style="color: var(--gold-starlight); margin: 8px 0;">Клуб</h4>
+            <p style="color: var(--text-main); font-size: 0.8rem;">«Искусство Выбирать Себя»: регулярные зумы и женское сообщество.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 14px;">
+            <span class="badge-gold">$2,500</span>
+            <h4 style="color: #FFFFFF; margin: 8px 0;">VIP Менторство</h4>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">3 месяца персональной Архитектуры Опоры 1-на-1 с Альбертой.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-watermark">ALBERTA SHIRANI · ПРОДУКТОВАЯ ЛИНЕЙКА</div>
+    </div>
+
+    <!-- SLIDE 6: UNIT ECONOMICS -->
+    <div class="slide-frame" id="slide-6">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge-gold">Unit-Экономика</span>
+        <span class="slide-counter">06 / 08</span>
+      </div>
+
+      <div>
+        <h2 style="font-family: var(--font-heading); font-size: 2.4rem; color: #FFFFFF; margin-bottom: 8px;">
+          План Выручки: 1 000 000 – 2 500 000 ₽ / месяц
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+          Реалистичная финансовая модель без необходимости вести сотни дешевых консультаций.
+        </p>
+
+        <div class="grid-3" style="gap: 16px;">
+          <div style="background: rgba(14, 18, 26, 0.8); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 20px; text-align: center;">
+            <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-dim);">Трипваер «Точка Сборки»</div>
+            <div style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--gold-starlight); margin: 8px 0;">150 000 ₽</div>
+            <p style="color: var(--text-muted); font-size: 0.82rem;">300 продаж по 490 ₽ через короткие Reels & Telegram воронку.</p>
+          </div>
+          <div style="background: rgba(14, 18, 26, 0.8); border: 1px solid var(--border-gold); border-radius: var(--radius-lg); padding: 20px; text-align: center;">
+            <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--gold-starlight);">Закрытый Клуб (100 чел)</div>
+            <div style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--gold-starlight); margin: 8px 0;">490 000 ₽ / мес</div>
+            <p style="color: var(--text-muted); font-size: 0.82rem;">100 резиденток по $50 (4 900 ₽) с регулярной LTV-подпиской.</p>
+          </div>
+          <div style="background: rgba(14, 18, 26, 0.8); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 20px; text-align: center;">
+            <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-dim);">VIP Сопровождение (2 чел)</div>
+            <div style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--emerald-primary); margin: 8px 0;">500 000 ₽</div>
+            <p style="color: var(--text-muted); font-size: 0.82rem;">2 премиальных клиента на 3 месяца ведения по 250 000 ₽.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-watermark">ALBERTA SHIRANI · ФИНАНСЫ</div>
+    </div>
+
+    <!-- SLIDE 7: AI AVATAR & EXPANSION -->
+    <div class="slide-frame" id="slide-7">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge-emerald">Технологический Рывок</span>
+        <span class="slide-counter">07 / 08</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;">
+        <div>
+          <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: #FFFFFF; margin-bottom: 12px;">
+            AI-Аватар и Мультиязычный Контент
+          </h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px;">
+            Масштабирование личного бренда Альберты на английский, арабский, испанский и немецкий языки без необходимости тратить по 4 часа в день на съемки.
+          </p>
+          <ul style="list-style: none; color: var(--text-main); font-size: 0.88rem; line-height: 1.8;">
+            <li>✓ HeyGen 2.0 + ElevenLabs: безупречный Lip-Sync и тембр</li>
+            <li>✓ 30–60 видео в месяц под ключ силами Global Spirit Group</li>
+            <li>✓ 100% суверенитет биометрии: аккаунты оформлены на Альберту</li>
+          </ul>
+        </div>
+        <div style="background: rgba(14, 18, 26, 0.9); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 24px; text-align: center;">
+          <div style="font-size: 3rem; margin-bottom: 8px;">🤖</div>
+          <h3 style="font-family: var(--font-heading); color: var(--gold-starlight); font-size: 1.3rem;">Полная Защита Прав</h3>
+          <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 8px;">
+            Лицензионный договор (Likeness Release) с запретом неэтичного использования и 100% премодерацией сценариев.
+          </p>
+        </div>
+      </div>
+
+      <div class="slide-watermark">ALBERTA SHIRANI · AI-АВАТАР</div>
+    </div>
+
+    <!-- SLIDE 8: WIN-WIN PARTNERSHIP -->
+    <div class="slide-frame" id="slide-8">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge-gold">Win-Win Партнёрство</span>
+        <span class="slide-counter">08 / 08</span>
+      </div>
+
+      <div style="text-align: center; margin: auto 0;">
+        <div style="font-size: 3rem; margin-bottom: 12px;">🤝</div>
+        <h2 style="font-family: var(--font-heading); font-size: 2.8rem; color: #FFFFFF; margin-bottom: 12px;">
+          Global Spirit Group × Alberta Shirani
+        </h2>
+        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 720px; margin: 0 auto 28px auto;">
+          Мы берём на себя техническую инфраструктуру, Telegram Mini App, монтаж AI-роликов, рекламные воронки и приём платежей со всего мира. Альберта фокусируется на продукте и экспертности.
+        </p>
+
+        <div style="display: flex; justify-content: center; gap: 16px;">
+          <a href="https://t.me/Alberta" target="_blank" class="btn-primary" style="padding: 16px 36px; font-size: 1rem;">
+            ✈️ Начать Запуск в Telegram
+          </a>
+          <a href="index.html" class="btn-secondary" style="padding: 16px 28px; font-size: 1rem;">
+            🏛️ Вернуться в Штаб
+          </a>
+        </div>
+      </div>
+
+      <div class="slide-watermark">ALBERTA SHIRANI · WIN-WIN 2026</div>
+    </div>
+
+  </div>
+
+  <!-- DECK CONTROLS -->
+  <footer class="deck-controls">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <a href="index.html" style="color: var(--gold-starlight); text-decoration: none; font-weight: 700;">
+        ← В Штаб
+      </a>
+      <span style="color: var(--text-dim);">|</span>
+      <span style="color: var(--text-muted);">Управление: ← / → или Пробел · F (Полноэкранный) · N (Заметки)</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <button class="btn-secondary" style="padding: 6px 14px; font-size: 0.8rem;" onclick="toggleNotes();">
+        📝 Заметки Спикера (N)
+      </button>
+      <button class="btn-secondary" style="padding: 6px 14px; font-size: 0.8rem;" onclick="prevSlide();">
+        ◀ Назад
+      </button>
+      <button class="btn-primary" style="padding: 6px 14px; font-size: 0.8rem;" onclick="nextSlide();">
+        Вперёд ▶
+      </button>
+    </div>
+  </footer>
+
+  <!-- SPEAKER NOTES DRAWER -->
+  <div class="speaker-notes-drawer" id="speakerNotes">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <span style="color: var(--gold-starlight); font-weight: 700; text-transform: uppercase; font-size: 0.8rem;">Заметки для ведущего</span>
+      <button style="background: none; border: none; color: var(--text-muted); cursor: pointer;" onclick="toggleNotes();">&times;</button>
+    </div>
+    <div id="notesContent" style="color: var(--text-main); font-size: 0.9rem; line-height: 1.5;">
+      Слайд 1: Представьтесь, обозначьте масштаб международного позиционирования и партнерство с Global Spirit Group.
+    </div>
+  </div>
+
+  <script src="assets/js/audio-synth.js"></script>
+  <script src="assets/js/quantum-canvas.js"></script>
+
+  <script>
+    const totalSlides = 8;
+    let currentSlide = 1;
+
+    const notesList = [
+      "Слайд 1: Приветствие. Позиционирование как дипломированного психотерапевта и автора метода Опоры.",
+      "Слайд 2: Точки боли. Подчеркнуть, что проект не про интерьер, а про глубинную пересборку жизни женщин 30–50 лет.",
+      "Слайд 3: Авторский метод. 3 столпа: соматика, сепарация от манипуляций, финансовый и личностный масштаб.",
+      "Слайд 4: Легитимность. Диплом ФРДО РФ г. Москва 2025 года — твёрдое юридическое преимущество.",
+      "Слайд 5: Линейка 4 продуктов. Логика перелива из бесплатного квиза в 490 ₽, клуб $50 и VIP $2,500.",
+      "Слайд 6: Финансовый план. Показать реалистичность 1 000 000 ₽ в месяц при закрытии всего 100 участниц в клуб.",
+      "Слайд 7: AI-Аватар. Подчеркнуть безопасность: аккаунты на имя Альберты, премодерация, никакой токсичности.",
+      "Слайд 8: Финальный оффер. Призыв к утверждению спринта и запуску совместного конвейера."
+    ];
+
+    function showSlide(index) {
+      if (index < 1) index = totalSlides;
+      if (index > totalSlides) index = 1;
+      currentSlide = index;
+
+      document.querySelectorAll('.slide-frame').forEach(el => el.classList.remove('active'));
+      const activeEl = document.getElementById(`slide-${currentSlide}`);
+      if (activeEl) activeEl.classList.add('active');
+
+      document.getElementById('notesContent').innerText = notesList[currentSlide - 1];
+      soundEngine.playTick();
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    function toggleNotes() {
+      const drawer = document.getElementById('speakerNotes');
+      drawer.style.display = (drawer.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N') {
+        toggleNotes();
+      } else if (e.key === 'f' || e.key === 'F') {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

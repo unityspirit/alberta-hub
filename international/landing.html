@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#080B10">
+  <title>Архитектура Внутренней Опоры — Alberta Shirani | Официальный Лендинг Трансформации</title>
+  <meta name="description" content="Премиальная программа глубинной трансформации женщин 30–50 лет от дипломированного психотерапевта Alberta Shirani. Выход из эмоционального выгорания, сепарация от токсичных связей, сборка несокрушимой внутренней опоры.">
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <style>
+    /* Specific styles for landing.html */
+    .hero-cinematic {
+      padding: 60px 0 40px 0;
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .hero-pretitle {
+      font-size: 0.82rem;
+      letter-spacing: 3px;
+      color: var(--gold-starlight);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 3.2rem;
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #FFFFFF 20%, var(--gold-light) 65%, var(--emerald-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    /* Comparison Table */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 36px 0;
+    }
+    .compare-col-old {
+      background: rgba(30, 20, 25, 0.6);
+      border: 1px solid rgba(244, 63, 94, 0.25);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+    }
+    .compare-col-new {
+      background: rgba(16, 32, 28, 0.7);
+      border: 1px solid var(--border-emerald);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      box-shadow: var(--shadow-emerald);
+    }
+
+    /* Interactive Quiz */
+    .quiz-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      box-shadow: var(--shadow-glow);
+      max-width: 800px;
+      margin: 40px auto;
+    }
+    .quiz-option {
+      background: rgba(14, 18, 26, 0.85);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    .quiz-option:hover {
+      border-color: var(--gold-starlight);
+      background: rgba(30, 41, 59, 0.9);
+      transform: translateX(4px);
+    }
+    .quiz-option.selected {
+      border-color: var(--gold-starlight);
+      background: rgba(212, 175, 55, 0.15);
+      font-weight: 600;
+    }
+
+    /* Pricing card */
+    .pricing-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: var(--gold-starlight);
+      box-shadow: var(--shadow-glow);
+      background: linear-gradient(180deg, rgba(28, 38, 56, 0.85) 0%, rgba(18, 24, 36, 0.95) 100%);
+    }
+    .pricing-price {
+      font-family: var(--font-heading);
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--gold-starlight);
+      margin: 16px 0;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.2rem; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .quiz-box { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="quantum-canvas"></canvas>
+
+  <!-- TOP STATUS BAR -->
+  <header class="top-status-bar">
+    <div class="live-indicator">
+      <span class="live-dot"></span>
+      <span>ALBERTA SHIRANI · КИНЕМАТОГРАФИЧНЫЙ ЛЕНДИНГ ТРАНСФОРМАЦИИ</span>
+    </div>
+
+    <div class="status-controls">
+      <button class="sound-toggle-btn" onclick="soundEngine.toggleAmbient(this); soundEngine.playTick();">
+        🎵 528Hz Поле Сердца: ВЫКЛ
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim);">Валюта:</span>
+        <select id="currencySelector" class="currency-select" onchange="AlbertaCurrency.setCurrency(this.value); soundEngine.playTick();">
+          <option value="USD">USD ($)</option>
+          <option value="RUB" selected>RUB (₽)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="USDT">USDT (₮)</option>
+        </select>
+      </div>
+
+      <a href="index.html" class="btn-secondary" style="padding: 6px 14px; font-size: 0.8rem;">
+        🏛️ В Штаб Экспансии
+      </a>
+    </div>
+  </header>
+
+  <div class="app-container">
+
+    <!-- MASTER NAVIGATION -->
+    <nav class="master-header">
+      <a href="index.html" class="brand-badge">
+        <div class="brand-logo-gem">👑</div>
+        <div class="brand-text">
+          <h1>Alberta Shirani</h1>
+          <span>Solid Support & Personal Transformation</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Штаб Экспансии</a></li>
+        <li><a href="landing.html" class="nav-link active">Лендинг Продаж</a></li>
+        <li><a href="presentation.html" class="nav-link">Презентация</a></li>
+        <li><a href="miniapp.html" class="nav-link">Mini App</a></li>
+        <li><a href="avatar-studio.html" class="nav-link">AI-Аватар</a></li>
+        <li><a href="#quiz" class="nav-link">Пройти Тест</a></li>
+      </ul>
+
+      <a href="#pricing" class="btn-header-cta" onclick="soundEngine.playChime(528);">
+        💎 Выбрать Тариф
+      </a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-cinematic">
+      <div class="hero-pretitle">Авторский Метод Дипломированного Психотерапевта (ФРДО РФ)</div>
+      <h1 class="hero-title">
+        Некоторые подруги и токсичные связи обходятся вашей психике дороже, чем личная терапия.
+      </h1>
+      <p class="hero-subtitle">
+        Системная трансформация для женщин 30–50 лет: выход из хронической тревоги и синдрома «удобной девочки», сепарация от эмоциональных вампиров и сборка несокрушимой внутренней опоры.
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="#quiz" class="btn-primary" style="font-size: 1rem; padding: 16px 36px;" onclick="soundEngine.playChime(528);">
+          ⚡ Пройти Экспресс-Диагностику Утечек (2 мин)
+        </a>
+        <a href="#method" class="btn-secondary" style="font-size: 1rem; padding: 16px 28px;">
+          📖 В чём суть Метода Опоры
+        </a>
+      </div>
+    </section>
+
+    <!-- COMPARISON SECTION -->
+    <section id="method" class="section-padding">
+      <div class="section-head">
+        <div class="section-tag">Глубинная Разница Подходов</div>
+        <h3 class="section-title">Почему поверхностные женские тренинги не работают после 30 лет</h3>
+        <p class="section-desc">После 30 лет наивный позитив разбивается о реальность. Необходима строгая архитектура психики.</p>
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-col-old">
+          <span style="color: var(--rose-accent); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">
+            ✕ Иллюзорный Позитив & Советы из Сети
+          </span>
+          <h4 style="font-family: var(--font-heading); font-size: 1.4rem; color: #FFFFFF; margin: 12px 0 16px 0;">
+            Попытка «задышать» боль и быть хорошей
+          </h4>
+          <ul style="list-style: none; color: var(--text-muted); font-size: 0.92rem; line-height: 1.8;">
+            <li>• Попытки медитировать на деньги и ждать спасателя.</li>
+            <li>• Страх отказать и быть отвергнутой токсичным окружением.</li>
+            <li>• Эмоциональные качели: от эйфории марафона к глубокому откату.</li>
+            <li>• Чувство вины за свои истинные желания и усталость.</li>
+            <li>• Жизнь в чужих сценариях ради сохранения статуса-кво.</li>
+          </ul>
+        </div>
+
+        <div class="compare-col-new">
+          <span style="color: var(--emerald-primary); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">
+            ✓ Архитектура Опоры Alberta Shirani
+          </span>
+          <h4 style="font-family: var(--font-heading); font-size: 1.4rem; color: #FFFFFF; margin: 12px 0 16px 0;">
+            Твёрдый психологический фундамент личности
+          </h4>
+          <ul style="list-style: none; color: var(--text-main); font-size: 0.92rem; line-height: 1.8;">
+            <li>• <b>Телесная опора:</b> прекращение соматизации стресса и тревоги.</li>
+            <li>• <b>Жёсткие личные границы:</b> спокойное «нет» без оправданий.</li>
+            <li>• <b>Сепарация:</b> выход из детской позиции и зависимых отношений.</li>
+            <li>• <b>Свой финансовый масштаб:</b> право на высокий доход и роскошь.</li>
+            <li>• <b>Научный базис:</b> подтверждено гос. дипломом психотерапевта ФРДО РФ.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE 3-STEP QUIZ -->
+    <section id="quiz" class="section-padding">
+      <div class="section-head">
+        <div class="section-tag">Интерактивный Аудит</div>
+        <h3 class="section-title">Экспресс-Тест: Где Ваша Главная Утечка Энергии?</h3>
+        <p class="section-desc">Ответьте на 3 вопроса и зафиксируйте персональный грант 20% на трансформационную программу.</p>
+      </div>
+
+      <div class="quiz-box" id="quizContainer">
+        <!-- STEP 1 -->
+        <div id="quizStep1">
+          <span style="color: var(--gold-starlight); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Шаг 1 из 3</span>
+          <h4 style="font-family: var(--font-heading); font-size: 1.4rem; color: #FFFFFF; margin: 8px 0 20px 0;">
+            В какой сфере вашей жизни сейчас происходит максимальная потеря сил?
+          </h4>
+          <div class="quiz-option" onclick="selectQuizOption(1, 'Отношения и токсичные связи', 25);">
+            <span>💔 Отношения: эмоциональные качели, манипуляции, отсутствие поддержки.</span>
+          </div>
+          <div class="quiz-option" onclick="selectQuizOption(1, 'Карьера и синдром самозванца', 20);">
+            <span>💼 Карьера / Бизнес: упёрлась в потолок, выгорание, боюсь брать большой чек.</span>
+          </div>
+          <div class="quiz-option" onclick="selectQuizOption(1, 'Телесный ресурс и усталость', 30);">
+            <span>🔋 Тело и здоровье: просыпаюсь уже уставшей, нет энергии на себя.</span>
+          </div>
+          <div class="quiz-option" onclick="selectQuizOption(1, 'Потеря ориентиров и кризис 35+', 25);">
+            <span>🌀 Личный кризис: всё есть, но внутри пустота и непонимание «куда дальше».</span>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div id="quizStep2" style="display: none;">
+          <span style="color: var(--gold-starlight); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Шаг 2 из 3</span>
+          <h4 style="font-family: var(--font-heading); font-size: 1.4rem; color: #FFFFFF; margin: 8px 0 20px 0;">
+            Что происходит, когда близкие или коллеги грубо нарушают ваши границы?
+          </h4>
+          <div class="quiz-option" onclick="selectQuizOption(2, 'Терплю и коплю обиду', 30);">
+            <span>🤐 Терплю, молчу, боюсь испортить отношения, а потом плачу в подушку.</span>
+          </div>
+          <div class="quiz-option" onclick="selectQuizOption(2, 'Взрываюсь и виню себя', 25);">
+            <span>💥 Терплю долго, потом взрываюсь агрессией и чувствую мучительную вину.</span>
+          </div>
+          <div class="quiz-option" onclick="selectQuizOption(2, 'Ухожу в холодную изоляцию', 20);">
+            <span>🧊 Закрываюсь, отдаляюсь, строю стену, чтобы меня никто не ранил.</span>
+          </div>
+          <div class="quiz-option" onclick="selectQuizOption(2, 'Пытаюсь заслужить любовь', 25);">
+            <span>🙇‍♀️ Начинаю угождать ещё больше в надежде, что меня оценят и поймут.</span>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div id="quizStep3" style="display: none;">
+          <span style="color: var(--gold-starlight); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Шаг 3 из 3</span>
+          <h4 style="font-family: var(--font-heading); font-size: 1.4rem; color: #FFFFFF; margin: 8px 0 20px 0;">
+            К какому ключевому изменению вы готовы прийти в ближайшие 60–90 дней?
+          </h4>
+          <div class="quiz-option" onclick="selectQuizOption(3, 'Несокрушимая внутренняя опора', 30);">
+            <span>👑 Обрести железобетонную опору на себя и перестать зависеть от чьего-то мнения.</span>
+          </div>
+          <div class="quiz-option" onclick="selectQuizOption(3, 'Экологичный выход из токсичных связей', 25);">
+            <span>✂️ Без чувства вины выйти из токсичных отношений и освободить место для любви.</span>
+          </div>
+          <div class="quiz-option" onclick="selectQuizOption(3, 'Выход в масштаб и высокий чек', 25);">
+            <span>🚀 Перестать обесценивать свой опыт, поднять чек на услуги и масштабироваться.</span>
+          </div>
+        </div>
+
+        <!-- RESULT STEP -->
+        <div id="quizResult" style="display: none; text-align: center;">
+          <div style="font-size: 3rem; margin-bottom: 12px;">💎</div>
+          <span class="badge-emerald" style="font-size: 0.85rem; margin-bottom: 12px;">Аудит Успешно Завершён</span>
+          <h4 style="font-family: var(--font-heading); font-size: 2rem; color: var(--gold-starlight); margin: 12px 0;">
+            Индекс истощения внутренней опоры: <span id="quizScoreDisplay" style="color: var(--emerald-primary);">78%</span>
+          </h4>
+          <p style="color: var(--text-muted); font-size: 1rem; max-width: 600px; margin: 0 auto 24px auto;">
+            Ваша психика тратит до <b>70% энергии</b> на удержание навязанных социальных масок и подавление эмоций. Вам показана программа скорой сборки «Точка Сборки» и участие в Закрытом Клубе Alberta Shirani.
+          </p>
+
+          <div style="background: rgba(212, 175, 55, 0.1); border: 1px dashed var(--gold-starlight); border-radius: var(--radius-md); padding: 14px; max-width: 440px; margin: 0 auto 24px auto;">
+            <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-dim);">Ваш персональный грант-промокод:</span>
+            <div style="font-family: var(--font-mono); font-size: 1.4rem; font-weight: 700; color: var(--gold-starlight);">
+              ALBERTA-OPORA-2026
+            </div>
+            <span style="font-size: 0.75rem; color: var(--emerald-primary);">Скидка 20% на любую ступень зафиксирована на 48 часов</span>
+          </div>
+
+          <a id="quizTgBtn" href="https://t.me/Alberta" target="_blank" class="btn-primary" style="padding: 16px 36px; font-size: 1rem;" onclick="soundEngine.playChime(528);">
+            ✈️ Отправить результат теста Альберте в Telegram
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING TIERS GRID -->
+    <section id="pricing" class="section-padding">
+      <div class="section-head">
+        <div class="section-tag">Форматы Участия</div>
+        <h3 class="section-title">Тарифы Программ Альберты Ширани</h3>
+        <p class="section-desc">Выберите удобный для вас уровень глубины и погружения. Цены пересчитываются автоматически в выбранной валюте.</p>
+      </div>
+
+      <div class="grid-3">
+        <!-- TIER 1: TRIPWIRE -->
+        <div class="pricing-card">
+          <div>
+            <span class="badge-emerald">Экспресс-Старт</span>
+            <h4 style="font-family: var(--font-heading); font-size: 1.6rem; margin: 12px 0 6px 0; color: #FFFFFF;">
+              Интенсив «Точка Сборки»
+            </h4>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+              5-дневный аудио-интенсив в Telegram для быстрой остановки паники, тревожности и возврата сил.
+            </p>
+
+            <div class="pricing-price" data-price-usd="5">490 ₽</div>
+
+            <ul style="list-style: none; font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">
+              <li>✓ 5 аудио-практик по 15 минут</li>
+              <li>✓ Практика центрирования и заземления</li>
+              <li>✓ Чеклист сепарации от токсичных людей</li>
+              <li>✓ Бессрочный доступ в Telegram-канале</li>
+            </ul>
+          </div>
+
+          <a href="https://t.me/Alberta?text=Здравствуйте,%20Альберта!%20Хочу%20получить%20интенсив%20Точка%20Сборки%20за%20490р" target="_blank" class="btn-secondary" style="width: 100%; text-align: center;" onclick="soundEngine.playTick();">
+            Купить Интенсив
+          </a>
+        </div>
+
+        <!-- TIER 2: MEMBERSHIP CLUB (FEATURED) -->
+        <div class="pricing-card featured">
+          <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold-starlight); color: #080B10; font-weight: 800; font-size: 0.72rem; padding: 4px 14px; border-radius: var(--radius-full); text-transform: uppercase;">
+            ★ Выбор 85% Женщин
+          </div>
+
+          <div>
+            <span class="badge-gold">Флагманский Клуб</span>
+            <h4 style="font-family: var(--font-heading); font-size: 1.6rem; margin: 12px 0 6px 0; color: var(--gold-starlight);">
+              «Искусство Выбирать Себя»
+            </h4>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+              Закрытое сообщество сильных женщин 30–50 лет. Регулярная групповая терапия и разборы с Альбертой.
+            </p>
+
+            <div class="pricing-price" data-price-usd="50">$50 / мес</div>
+
+            <ul style="list-style: none; font-size: 0.88rem; color: var(--text-main); line-height: 1.8; margin-bottom: 24px;">
+              <li>✓ 4 закрытых Zoom-разбора в месяц с Альбертой</li>
+              <li>✓ Библиотека из 40+ соматических практик</li>
+              <li>✓ Закрытый чат резиденток (ОАЭ, ЕС, США, РФ)</li>
+              <li>✓ Персональная обратная связь кураторов</li>
+              <li>✓ Закрытые эфиры с экспертами по стилю и телу</li>
+            </ul>
+          </div>
+
+          <a href="https://t.me/Alberta?text=Здравствуйте,%20Альберта!%20Хочу%20вступить%20в%20Закрытый%20Клуб%20Искусство%20Выбирать%20Себя" target="_blank" class="btn-primary" style="width: 100%; text-align: center;" onclick="soundEngine.playChime(528);">
+            Вступить в Клуб
+          </a>
+        </div>
+
+        <!-- TIER 3: VIP MENTORSHIP -->
+        <div class="pricing-card">
+          <div>
+            <span class="badge-gold">Индивидуальный VIP</span>
+            <h4 style="font-family: var(--font-heading); font-size: 1.6rem; margin: 12px 0 6px 0; color: #FFFFFF;">
+              Архитектура Опоры VIP
+            </h4>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+              3 месяца персонального ведения под личным кураторством Альберты Shirani.
+            </p>
+
+            <div class="pricing-price" data-price-usd="2500">$2,500</div>
+
+            <ul style="list-style: none; font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">
+              <li>✓ 12 личных терапевтических сессий (1 на 1)</li>
+              <li>✓ Личный чат поддержки 24/7 в Telegram</li>
+              <li>✓ Персональная пересборка сценариев жизни</li>
+              <li>✓ Пожизненный VIP-доступ во все продукты Клуба</li>
+              <li>✓ Приоритет на очные выездные ретриты</li>
+            </ul>
+          </div>
+
+          <a href="https://t.me/Alberta?text=Здравствуйте,%20Альберта!%20Интересует%20VIP%20сопровождение%20Архитектура%20Опоры" target="_blank" class="btn-secondary" style="width: 100%; text-align: center;" onclick="soundEngine.playTick();">
+            Подать Заявку на VIP
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 40px 0 20px 0; border-top: 1px solid var(--border-glass); color: var(--text-dim); font-size: 0.85rem;">
+      <p style="margin-bottom: 8px;">
+        © 2026 Международная Академия Трансформации Личности Alberta Shirani. Все права защищены.
+      </p>
+      <p>
+        Продюсерский & Технический Хаб: <b>Global Spirit Group</b> · Реестр ФРДО РФ
+      </p>
+    </footer>
+
+  </div>
+
+  <script src="assets/js/audio-synth.js"></script>
+  <script src="assets/js/currency.js"></script>
+  <script src="assets/js/quantum-canvas.js"></script>
+
+  <script>
+    // Quiz state
+    const quizState = {
+      answers: [],
+      score: 0
+    };
+
+    function selectQuizOption(step, answerText, points) {
+      soundEngine.playTick();
+      quizState.answers.push(answerText);
+      quizState.score += points;
+
+      if (step === 1) {
+        document.getElementById('quizStep1').style.display = 'none';
+        document.getElementById('quizStep2').style.display = 'block';
+      } else if (step === 2) {
+        document.getElementById('quizStep2').style.display = 'none';
+        document.getElementById('quizStep3').style.display = 'block';
+      } else if (step === 3) {
+        document.getElementById('quizStep3').style.display = 'none';
+        document.getElementById('quizResult').style.display = 'block';
+
+        const finalScore = Math.min(Math.max(quizState.score, 45), 94);
+        document.getElementById('quizScoreDisplay').innerText = `${finalScore}%`;
+
+        const msg = encodeURIComponent(
+          `Здравствуйте, Альберта! Я прошла ваш тест на внутреннюю опору.\n` +
+          `• Мой индекс истощения: ${finalScore}%\n` +
+          `• Мои ответы:\n  1. ${quizState.answers[0]}\n  2. ${quizState.answers[1]}\n  3. ${quizState.answers[2]}\n` +
+          `• Мой промокод на грант: ALBERTA-OPORA-2026\n` +
+          `Хочу записаться на диагностику!`
+        );
+        document.getElementById('quizTgBtn').href = `https://t.me/Alberta?text=${msg}`;
+        soundEngine.playChime(528);
+      }
+    }
+  </script>
+</body>
+</html>

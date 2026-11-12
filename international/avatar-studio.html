@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#080B10">
+  <title>Alberta Shirani — Студия AI-Аватара & Цифровой Двойник | Global Spirit Group</title>
+  <meta name="description" content="Стратегическая студия и симулятор AI-Аватара Alberta Shirani: мультиязычное вещание на 30+ языках мира без выгорания эксперта, юридическая защита лица и голоса (Likeness Release), суверенитет аккаунтов.">
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <style>
+    .avatar-hero {
+      text-align: center;
+      padding: 50px 0 30px 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .avatar-preview-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 36px;
+      box-shadow: var(--shadow-glow);
+      margin: 30px 0 50px 0;
+    }
+    .video-mockup {
+      background: #04060A;
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      aspect-ratio: 9 / 16;
+      max-height: 520px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+    }
+    .subtitles-box {
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: #FFFFFF;
+      text-align: center;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+    .lang-pill-btn {
+      background: rgba(14, 18, 26, 0.8);
+      border: 1px solid var(--border-glass);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .lang-pill-btn:hover, .lang-pill-btn.active {
+      background: var(--gold-starlight);
+      color: #080B10;
+      border-color: var(--gold-starlight);
+    }
+
+    @media (max-width: 900px) {
+      .avatar-preview-box { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="quantum-canvas"></canvas>
+
+  <!-- TOP STATUS BAR -->
+  <header class="top-status-bar">
+    <div class="live-indicator">
+      <span class="live-dot"></span>
+      <span>СТУДИЯ AI-АВАТАРА · HEYGEN 2.0 & ELEVENLABS READY</span>
+    </div>
+
+    <div class="status-controls">
+      <a href="index.html" class="btn-secondary" style="padding: 6px 14px; font-size: 0.8rem;">
+        🏛️ Вернуться в Штаб
+      </a>
+      <a href="https://t.me/Alberta" target="_blank" class="btn-primary" style="padding: 6px 16px; font-size: 0.8rem;">
+        ✈️ Связь с Альбертой
+      </a>
+    </div>
+  </header>
+
+  <div class="app-container">
+
+    <!-- MASTER NAVIGATION -->
+    <nav class="master-header">
+      <a href="index.html" class="brand-badge">
+        <div class="brand-logo-gem">👑</div>
+        <div class="brand-text">
+          <h1>Alberta Shirani</h1>
+          <span>AI Digital Twin & Avatar Studio</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Штаб Экспансии</a></li>
+        <li><a href="landing.html" class="nav-link">Лендинг Продаж</a></li>
+        <li><a href="presentation.html" class="nav-link">Презентация</a></li>
+        <li><a href="miniapp.html" class="nav-link">Mini App</a></li>
+        <li><a href="avatar-studio.html" class="nav-link active">Студия AI-Аватара</a></li>
+        <li><a href="#legal" class="nav-link">Юридическая Защита</a></li>
+      </ul>
+
+      <a href="https://t.me/Alberta" target="_blank" class="btn-header-cta" onclick="soundEngine.playChime(528);">
+        🚀 Утвердить Аватар
+      </a>
+    </nav>
+
+    <!-- AVATAR HERO -->
+    <section class="avatar-hero">
+      <span class="badge-gold">Международная Экспансия Без Выгорания</span>
+      <h2 class="section-title">
+        Цифровой Двойник Alberta Shirani на 30+ Языках
+      </h2>
+      <p class="section-desc">
+        Регулярный постинг виральных экспертных роликов для Instagram Reels, YouTube Shorts и TikTok в Дубае, США, Европе и Азии без необходимости проводить в студии по 4 часа каждый день.
+      </p>
+    </section>
+
+    <!-- INTERACTIVE AVATAR SIMULATOR -->
+    <section class="avatar-preview-box">
+      <!-- 9:16 Video Mockup -->
+      <div class="video-mockup">
+        <div style="display: flex; justify-content: space-between; align-items: center; z-index: 2;">
+          <span class="badge-emerald" style="font-size: 0.7rem;">● LIVE SIMULATION</span>
+          <span id="activeLangBadge" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--gold-starlight);">EN (English)</span>
+        </div>
+
+        <div style="text-align: center; margin: auto 0; z-index: 2;">
+          <div style="width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #D4AF37, #064E3B); margin: 0 auto 16px auto; display: flex; align-items: center; justify-content: center; font-size: 4rem; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); border: 2px solid var(--border-gold);">
+            💎
+          </div>
+          <h4 style="font-family: var(--font-heading); color: #FFFFFF; font-size: 1.3rem;">Alberta Shirani AI</h4>
+          <span style="font-size: 0.75rem; color: var(--gold-starlight); letter-spacing: 1.5px;">VOICE CLONE V3</span>
+        </div>
+
+        <div class="subtitles-box" id="avatarSubtitles" style="z-index: 2;">
+          "Some relationships cost your mental health more than deep psychotherapy. It is time to rebuild your solid inner foundation."
+        </div>
+      </div>
+
+      <!-- Controls & Details -->
+      <div>
+        <h3 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--gold-starlight); margin-bottom: 12px;">
+          Интерактивный Симулятор Языков
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 20px;">
+          Нажмите на любой язык, чтобы переключить субтитры и протестировать мультиязычное вещание эксперта:
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px;">
+          <button class="lang-pill-btn active" onclick="switchLang('EN', this)">🇺🇸 English (US)</button>
+          <button class="lang-pill-btn" onclick="switchLang('RU', this)">🇷🇺 Русский</button>
+          <button class="lang-pill-btn" onclick="switchLang('ES', this)">🇪🇸 Español</button>
+          <button class="lang-pill-btn" onclick="switchLang('DE', this)">🇩🇪 Deutsch</button>
+          <button class="lang-pill-btn" onclick="switchLang('AR', this)">🇦🇪 العربية (Arabic)</button>
+        </div>
+
+        <div class="glass-card" style="padding: 24px; margin-bottom: 20px;">
+          <h4 style="color: #FFFFFF; font-size: 1.1rem; margin-bottom: 8px;">Стек Технологий 2026 года:</h4>
+          <ul style="list-style: none; font-size: 0.88rem; color: var(--text-muted); line-height: 1.8;">
+            <li>• <b>HeyGen 2.0 Studio:</b> Реалистичная мимика губ (Lip-Sync) и сохранение естественного взгляда.</li>
+            <li>• <b>ElevenLabs Professional Voice Clone:</b> Клонирование бархатного и уверенного тембра голоса Альберты.</li>
+            <li>• <b>Google VEO 3.1 & Runway:</b> Генерация кинематографичных перебивок в эстетике Kinfolk & Solid Luxury.</li>
+          </ul>
+        </div>
+
+        <button class="btn-primary" style="width: 100%;" onclick="soundEngine.playChime(528); alert('Демонстрационный режим: генерация запускается через API HeyGen при наличии ключей.');">
+          ▶ Протестировать Синтез Речи (Web Audio)
+        </button>
+      </div>
+    </section>
+
+    <!-- LEGAL PROTECTION FRAMEWORK (SOVEREIGNTY) -->
+    <section id="legal" class="section-padding">
+      <div class="section-head">
+        <div class="section-tag">Безопасность & Суверенитет</div>
+        <h3 class="section-title">Юридический Фреймворк Защиты Прав Альберты</h3>
+        <p class="section-desc">Ключевой приоритет Global Spirit Group — абсолютная безопасность биометрии, лица и репутации эксперта.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="glass-card">
+          <div style="font-size: 2rem; margin-bottom: 8px;">🔐</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--gold-starlight); margin-bottom: 10px;">
+            1. Полный Суверенитет (Full Ownership)
+          </h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">
+            Все мастер-аккаунты в HeyGen, ElevenLabs и Higgsfield регистрируются <b>строго на имя и почту Альберты Shirani</b>. Нашей продакшн-команде выдаются только технические доступы оператора. Альберта может отозвать доступ в любой момент.
+          </p>
+        </div>
+
+        <div class="glass-card">
+          <div style="font-size: 2rem; margin-bottom: 8px;">📜</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--gold-starlight); margin-bottom: 10px;">
+            2. Лицензионный Договор (Likeness Release)
+          </h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">
+            Передача неисключительных прав исключительно в рамках утвержденных образовательных тем Академии Опоры. <b>Строгий юридический запрет</b> на использование образа в сторонней рекламе, политике, токсичных или серых темах.
+          </p>
+        </div>
+
+        <div class="glass-card">
+          <div style="font-size: 2rem; margin-bottom: 8px;">✅</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--gold-starlight); margin-bottom: 10px;">
+            3. 100% Премодерация (Pre-Approval)
+          </h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">
+            Ни одно сгенерированное видео не выходит в публичные соцсети без финального письменного подтверждения Альберты в Telegram («Утверждаю»). Полный контроль над смыслом, стилем и интонацией.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 40px 0 20px 0; border-top: 1px solid var(--border-glass); color: var(--text-dim); font-size: 0.85rem;">
+      <p style="margin-bottom: 8px;">
+        © 2026 Alberta Shirani × Global Spirit Group. Продюсирование и AI-Аватар Студия.
+      </p>
+      <p>
+        Все биометрические права и интеллектуальная собственность принадлежат Alberta Shirani.
+      </p>
+    </footer>
+
+  </div>
+
+  <script src="assets/js/audio-synth.js"></script>
+  <script src="assets/js/quantum-canvas.js"></script>
+
+  <script>
+    const subs = {
+      EN: "Some relationships cost your mental health more than deep psychotherapy. It is time to rebuild your solid inner foundation.",
+      RU: "Некоторые подруги и токсичные связи обходятся вашей психике дороже, чем личная терапия. Пора собрать свою несокрушимую опору.",
+      ES: "Algunas relaciones le cuestan a tu salud mental más que una psicoterapia profunda. Es momento de reconstruir tu base interior sólida.",
+      DE: "Manche Beziehungen kosten Ihre mentale Gesundheit mehr als eine tiefgehende Psychotherapie. Zeit, Ihr inneres Fundament neu aufzubauen.",
+      AR: "بعض العلاقات تكلف صحتك النفسية أكثر من العلاج النفسي العميق. لقد حان الوقت لإعادة بناء أساسك الداخلي الصلب."
+    };
+
+    function switchLang(lang, btn) {
+      soundEngine.playTick();
+      document.querySelectorAll('.lang-pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('activeLangBadge').innerText = `${lang}`;
+      document.getElementById('avatarSubtitles').innerText = `"${subs[lang]}"`;
+      soundEngine.playChime(528);
+    }
+  </script>
+</body>
+</html>

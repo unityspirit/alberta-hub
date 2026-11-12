@@ -10,15 +10,22 @@ class AlbertaHubEngine {
     this.currentSlide = 0;
     this.totalSlides = 6;
 
-    // Default Pre-populated Tasks
+    this.kanbanViewMode = localStorage.getItem('alberta_kanban_mode_v2') || 'tiers';
+    this.kanbanFilter = 'all';
+
+    // Default Pre-populated Tasks (with 4-tier categorization: today / main / intermediate / parallel)
     this.defaultTasks = [
-      { id: 't1', title: 'Утвердить чистовые видео из Google VEO 3.1 по 7 готовым сценариям', status: 'in-progress', owner: 'alberta', tag: 'Альберта' },
-      { id: 't2', title: 'Подключить Telegram-бота для лид-магнита и квалификации заявок', status: 'in-progress', owner: 'gsg', tag: 'Автоматизация' },
-      { id: 't3', title: 'Внедрить ключи Prodamus/ЮKassa для продажи трипваера 490 ₽', status: 'todo', owner: 'gsg', tag: 'Финансы' },
-      { id: 't4', title: 'Запустить сайт закрытого клуба alberta-club-site с виджетом RuFlow', status: 'done', owner: 'gsg', tag: 'Global Spirit' },
-      { id: 't5', title: 'Интегрировать Canvas 2D / WebGL скролл-анимацию на 900 кадров WebP', status: 'done', owner: 'gsg', tag: 'Разработка' },
-      { id: 't6', title: 'Провести первые 5 диагностик по авторской методике «Архитектура Опоры»', status: 'todo', owner: 'alberta', tag: 'Альберта' },
-      { id: 't7', title: 'Подготовить материалы для запуска Membership-Клуба $50/мес (Q2)', status: 'todo', owner: 'gsg', tag: 'Масштаб' }
+      { id: 't_today_50', title: '#50 Запрос от 12.11: Выявить главный триггер женщин 30–50 лет (анализ соцсетей и алгоритмов) + мини-продукт без возражений', status: 'in-progress', tier: 'today', owner: 'gsg', tag: 'Сегодня · Триггер & Продукт' },
+      { id: 't_today_49', title: '#49 Запрос от 12.11: Обновить нишу клуба с «гармонизации дома» на трансформацию женщин 30–50 (опора, уверенность, стиль, доход, отношения, тревожность, свои желания)', status: 'done', tier: 'today', owner: 'alberta', tag: 'Сегодня · Позиционирование' },
+      { id: 't_today_48', title: '#48 Запрос от 12.11: Архитектура Telegram-бота (@lermontovplusbot) и воронки подписки на 1 000 000 ₽', status: 'in-progress', tier: 'today', owner: 'gsg', tag: 'Сегодня · Бот 1M ₽' },
+      { id: 't_today_47', title: '#47 Запрос от 12.11: Быстрые клиенты и идеи моментальной монетизации для Альберты', status: 'in-progress', tier: 'today', owner: 'gsg', tag: 'Сегодня · Быстрые деньги' },
+      { id: 't6', title: 'Провести первые 5 диагностик по авторской методике «Архитектура Опоры» (женщины 30–50 лет)', status: 'todo', tier: 'main', owner: 'alberta', tag: 'Главная · Альберта' },
+      { id: 't7', title: 'Подготовить запуск Membership-Клуба «Архитектура Опоры» ($50/мес · 100 резидентов)', status: 'todo', tier: 'main', owner: 'gsg', tag: 'Главная · Масштаб' },
+      { id: 't3', title: 'Внедрить ключи Prodamus/ЮKassa для продажи трипваера и мини-продукта', status: 'todo', tier: 'intermediate', owner: 'gsg', tag: 'Промежуточная · Финансы' },
+      { id: 't1', title: 'Утвердить чистовые видео из Google VEO 3.1 по 7 готовым сценариям + 30 сек интро', status: 'in-progress', tier: 'intermediate', owner: 'alberta', tag: 'Промежуточная · Контент' },
+      { id: 't2', title: 'Активировать личный бот @lermontovplusbot (нажать /start для привязки Chat ID)', status: 'in-progress', tier: 'intermediate', owner: 'alberta', tag: 'Промежуточная · Бот' },
+      { id: 't4', title: 'Запустить Международную Академию & Штаб Экспансии 5-в-1 (alberta-hub/international)', status: 'done', tier: 'parallel', owner: 'gsg', tag: 'Параллельная · Хаб' },
+      { id: 't5', title: 'Интегрировать Canvas 2D / WebGL скролл-анимацию на 900 кадров WebP & AI-аватар', status: 'done', tier: 'parallel', owner: 'gsg', tag: 'Параллельная · Разработка' }
     ];
 
     // Default Smart Notes & VEO 3.1 Prompts
@@ -128,20 +135,32 @@ class AlbertaHubEngine {
     // Default Asset Links
     this.defaultAssets = [
       { cat: 'hub', title: 'Персональный Бизнес-Хаб & Бренд-Бук (Live GitHub Pages)', url: 'https://unityspirit.github.io/alberta-hub/' },
+      { cat: 'hub-5in1', title: '🌌 Международная Академия & Штаб Экспансии 5-в-1', url: 'https://unityspirit.github.io/alberta-hub/international/' },
+      { cat: 'bot', title: '🤖 Личный Telegram-Бот Альберты (@lermontovplusbot)', url: 'https://t.me/lermontovplusbot?start=aliashirani' },
       { cat: 'office', title: 'Виртуальный Офис Global Spirit Group (Remote Control)', url: 'https://unityspirit.github.io/remote-agents-control/' },
-      { cat: 'site', title: 'Лендинг Клуба Alberta Shirani (Локальный сервер / Vite)', url: 'http://localhost:5174/' },
-      { cat: 'tripwire', title: 'Воронка Трипваера «Точка сборки — 5 дней» (490 ₽)', url: 'file:///C:/Users/Vlaslav/OneDrive/Desktop/delaem%20prezervativ/alberta_tripwire/index.html' },
       { cat: 'tg', title: 'Личный контакт Alberta в Telegram', url: 'https://t.me/Alberta' },
-      { cat: 'repo', title: 'GitHub Репозиторий unityspirit/alberta-hub', url: 'https://github.com/unityspirit/alberta-hub' },
-      { cat: 'agents', title: 'ИИ-агенты RuFlow (Консьерж, Инста-директ, Удержание)', url: 'file:///C:/Users/Vlaslav/OneDrive/Desktop/delaem%20prezervativ/Alberta_Workspace/alberta-agents/' },
-      { cat: 'prompts', title: 'База промптов Google VEO 3.1 (7-дневный спринт)', url: 'file:///C:/Users/Vlaslav/OneDrive/Desktop/delaem%20prezervativ/Alberta_Workspace/alberta_7_day_veo_prompts_and_content.md' }
+      { cat: 'repo', title: 'GitHub Репозиторий unityspirit/alberta-hub', url: 'https://github.com/unityspirit/alberta-hub' }
     ];
 
-    // Load from LocalStorage
-    this.tasks = JSON.parse(localStorage.getItem('alberta_hub_tasks')) || this.defaultTasks;
+    // Load from LocalStorage (with v2 4-tier migration)
+    const savedV2 = JSON.parse(localStorage.getItem('alberta_hub_tasks_v2') || 'null');
+    if (Array.isArray(savedV2) && savedV2.length > 0) {
+      this.tasks = savedV2;
+    } else {
+      const legacy = JSON.parse(localStorage.getItem('alberta_hub_tasks') || 'null');
+      if (Array.isArray(legacy) && legacy.length > 0) {
+        const todayIds = new Set(this.defaultTasks.filter(x => x.tier === 'today').map(x => x.id));
+        const merged = this.defaultTasks.filter(x => todayIds.has(x.id)).concat(
+          legacy.map(lt => ({ ...lt, tier: lt.tier || (lt.status === 'done' ? 'parallel' : 'intermediate') }))
+        );
+        this.tasks = merged;
+      } else {
+        this.tasks = this.defaultTasks;
+      }
+    }
     this.notes = JSON.parse(localStorage.getItem('alberta_hub_notes')) || this.defaultNotes;
     this.releases = JSON.parse(localStorage.getItem('alberta_hub_releases')) || this.defaultReleases;
-    this.assets = JSON.parse(localStorage.getItem('alberta_hub_assets')) || this.defaultAssets;
+    this.assets = this.defaultAssets;
 
     this.init();
   }
@@ -420,33 +439,111 @@ class AlbertaHubEngine {
   }
 
   /* ========================================================
-     KANBAN BOARD (MODULE 5)
+     KANBAN & 4-TIER TASK BOARD (MODULE 5)
      ======================================================== */
-  renderKanban(filterTag = 'all') {
+  getTaskTier(task) {
+    if (task && ['today', 'main', 'intermediate', 'parallel'].includes(task.tier)) return task.tier;
+    const t = String((task && (task.title + ' ' + task.tag)) || '').toLowerCase();
+    if (/сегодн|#47|#48|#49|#50|срочно/.test(t)) return 'today';
+    if (/клуб|главн|диагностик|масштаб|1 000 000|продукт/.test(t)) return 'main';
+    if (/параллель|аватар|reels|авто|фонов|хаб|900/.test(t)) return 'parallel';
+    return 'intermediate';
+  }
+
+  getTierLabel(tier) {
+    const map = {
+      today: '🔥 Сегодня',
+      main: '🎯 Главная',
+      intermediate: '🪜 Промежуточная',
+      parallel: '⚡ Параллельная'
+    };
+    return map[tier] || '🪜 Промежуточная';
+  }
+
+  setKanbanViewMode(mode) {
+    this.kanbanViewMode = mode === 'status' ? 'status' : 'tiers';
+    localStorage.setItem('alberta_kanban_mode_v2', this.kanbanViewMode);
+    const tierBoard = document.getElementById('kanbanTierBoard');
+    const statusBoard = document.getElementById('kanbanStatusBoard');
+    const bT = document.getElementById('btnModeTiers');
+    const bS = document.getElementById('btnModeStatus');
+    if (tierBoard) tierBoard.style.display = this.kanbanViewMode === 'tiers' ? 'grid' : 'none';
+    if (statusBoard) statusBoard.style.display = this.kanbanViewMode === 'status' ? 'grid' : 'none';
+    if (bT) bT.classList.toggle('active', this.kanbanViewMode === 'tiers');
+    if (bS) bS.classList.toggle('active', this.kanbanViewMode === 'status');
+    this.renderKanban(this.kanbanFilter || 'all');
+  }
+
+  cycleTaskTier(id) {
+    const order = ['today', 'main', 'intermediate', 'parallel'];
+    const task = this.tasks.find(t => t.id === id);
+    if (!task) return;
+    const cur = this.getTaskTier(task);
+    task.tier = order[(order.indexOf(cur) + 1) % order.length];
+    this.saveTasks();
+    this.renderKanban(this.kanbanFilter || 'all');
+    this.showToast('Перенесено в: ' + this.getTierLabel(task.tier));
+  }
+
+  renderKanban(filterTag = this.kanbanFilter || 'all') {
+    this.kanbanFilter = filterTag;
+    const tierBoard = document.getElementById('kanbanTierBoard');
+    const statusBoard = document.getElementById('kanbanStatusBoard');
+    if (tierBoard && statusBoard) {
+      tierBoard.style.display = this.kanbanViewMode === 'tiers' ? 'grid' : 'none';
+      statusBoard.style.display = this.kanbanViewMode === 'status' ? 'grid' : 'none';
+      const bT = document.getElementById('btnModeTiers');
+      const bS = document.getElementById('btnModeStatus');
+      if (bT) bT.classList.toggle('active', this.kanbanViewMode === 'tiers');
+      if (bS) bS.classList.toggle('active', this.kanbanViewMode === 'status');
+    }
+
     const colTodo = document.getElementById('kanbanColTodo');
     const colProg = document.getElementById('kanbanColProg');
     const colDone = document.getElementById('kanbanColDone');
+    const tToday = document.getElementById('tierColToday');
+    const tMain = document.getElementById('tierColMain');
+    const tInter = document.getElementById('tierColInter');
+    const tParallel = document.getElementById('tierColParallel');
 
-    if (!colTodo || !colProg || !colDone) return;
+    if (colTodo) colTodo.innerHTML = '';
+    if (colProg) colProg.innerHTML = '';
+    if (colDone) colDone.innerHTML = '';
+    if (tToday) tToday.innerHTML = '';
+    if (tMain) tMain.innerHTML = '';
+    if (tInter) tInter.innerHTML = '';
+    if (tParallel) tParallel.innerHTML = '';
 
-    colTodo.innerHTML = '';
-    colProg.innerHTML = '';
-    colDone.innerHTML = '';
+    const counts = { all: this.tasks.length, today: 0, main: 0, intermediate: 0, parallel: 0 };
+    this.tasks.forEach(t => { counts[this.getTaskTier(t)]++; });
+    const setTxt = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    setTxt('kCntAll', counts.all);
+    setTxt('kCntToday', counts.today);
+    setTxt('kCntMain', counts.main);
+    setTxt('kCntInter', counts.intermediate);
+    setTxt('kCntParallel', counts.parallel);
 
     let todoCount = 0, progCount = 0, doneCount = 0;
+    let cToday = 0, cMain = 0, cInter = 0, cParallel = 0;
 
     const filtered = this.tasks.filter(t => {
       if (filterTag === 'all') return true;
+      if (['today', 'main', 'intermediate', 'parallel'].includes(filterTag)) return this.getTaskTier(t) === filterTag;
       if (filterTag === 'alberta') return t.owner === 'alberta';
       if (filterTag === 'gsg') return t.owner === 'gsg';
-      return t.tag.toLowerCase().includes(filterTag.toLowerCase());
+      return (t.tag || '').toLowerCase().includes(filterTag.toLowerCase());
     });
 
-    filtered.forEach(task => {
+    const makeCard = (task) => {
+      const tier = this.getTaskTier(task);
+      const stLabel = task.status === 'done' ? '✅' : (task.status === 'in-progress' ? '🛠' : '⏳');
       const card = document.createElement('div');
       card.className = 'kanban-card';
       card.innerHTML = `
-        <span class="kanban-card-tag">${task.tag}</span>
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:6px; flex-wrap:wrap;">
+          <span class="kanban-card-tag">${stLabel} ${task.tag}</span>
+          <button class="kanban-card-btn" onclick="HUB.cycleTaskTier('${task.id}')" title="Сменить группу задачи" style="width:auto; padding:2px 8px; font-size:0.7rem;">${this.getTierLabel(tier)} ↻</button>
+        </div>
         <div class="kanban-card-title">${task.title}</div>
         <div class="kanban-card-footer">
           <span>${task.owner === 'alberta' ? '👤 Альберта' : '⚡ Global Spirit'}</span>
@@ -457,25 +554,28 @@ class AlbertaHubEngine {
           </div>
         </div>
       `;
+      return card;
+    };
 
-      if (task.status === 'todo') {
-        colTodo.appendChild(card);
-        todoCount++;
-      } else if (task.status === 'in-progress') {
-        colProg.appendChild(card);
-        progCount++;
-      } else if (task.status === 'done') {
-        colDone.appendChild(card);
-        doneCount++;
-      }
+    filtered.forEach(task => {
+      const tier = this.getTaskTier(task);
+      if (tier === 'today' && tToday) { tToday.appendChild(makeCard(task)); cToday++; }
+      else if (tier === 'main' && tMain) { tMain.appendChild(makeCard(task)); cMain++; }
+      else if (tier === 'intermediate' && tInter) { tInter.appendChild(makeCard(task)); cInter++; }
+      else if (tParallel) { tParallel.appendChild(makeCard(task)); cParallel++; }
+
+      if (task.status === 'todo' && colTodo) { colTodo.appendChild(makeCard(task)); todoCount++; }
+      else if (task.status === 'in-progress' && colProg) { colProg.appendChild(makeCard(task)); progCount++; }
+      else if (task.status === 'done' && colDone) { colDone.appendChild(makeCard(task)); doneCount++; }
     });
 
-    const cntTodo = document.getElementById('countTodo');
-    const cntProg = document.getElementById('countProg');
-    const cntDone = document.getElementById('countDone');
-    if (cntTodo) cntTodo.textContent = todoCount;
-    if (cntProg) cntProg.textContent = progCount;
-    if (cntDone) cntDone.textContent = doneCount;
+    setTxt('countTodo', todoCount);
+    setTxt('countProg', progCount);
+    setTxt('countDone', doneCount);
+    setTxt('tierCntToday', cToday);
+    setTxt('tierCntMain', cMain);
+    setTxt('tierCntInter', cInter);
+    setTxt('tierCntParallel', cParallel);
   }
 
   moveTask(id, dir) {
@@ -491,36 +591,40 @@ class AlbertaHubEngine {
     }
 
     this.saveTasks();
-    this.renderKanban();
+    this.renderKanban(this.kanbanFilter || 'all');
   }
 
   deleteTask(id) {
     this.tasks = this.tasks.filter(t => t.id !== id);
     this.saveTasks();
-    this.renderKanban();
+    this.renderKanban(this.kanbanFilter || 'all');
     this.showToast('Задача удалена.');
   }
 
   addNewTask() {
     const title = prompt('Введите название новой задачи:');
     if (!title || !title.trim()) return;
-
+    const tierAns = (prompt('Категория: 1 — Сегодня, 2 — Главная, 3 — Промежуточная, 4 — Параллельная:', '1') || '1').trim();
+    const tierMap = { '1': 'today', '2': 'main', '3': 'intermediate', '4': 'parallel' };
+    const tier = tierMap[tierAns] || 'today';
     const isAlberta = confirm('Назначить задачу Альберте? (ОК — Альберта, Отмена — Global Spirit)');
     const newTask = {
       id: 't_' + Date.now(),
       title: title.trim(),
       status: 'todo',
+      tier: tier,
       owner: isAlberta ? 'alberta' : 'gsg',
-      tag: isAlberta ? 'Альберта' : 'Global Spirit'
+      tag: this.getTierLabel(tier).replace(/^[^\s]+\s/, '') + ' · ' + (isAlberta ? 'Альберта' : 'Global Spirit')
     };
 
     this.tasks.unshift(newTask);
     this.saveTasks();
-    this.renderKanban();
-    this.showToast('Новая задача добавлена в очередь!');
+    this.renderKanban(this.kanbanFilter || 'all');
+    this.showToast('Новая задача добавлена!');
   }
 
   saveTasks() {
+    localStorage.setItem('alberta_hub_tasks_v2', JSON.stringify(this.tasks));
     localStorage.setItem('alberta_hub_tasks', JSON.stringify(this.tasks));
   }
 

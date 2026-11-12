@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#080B10">
+  <title>Alberta Shirani — Международная Академия Трансформации & Архитектуры Внутренней Опоры | Штаб Экспансии</title>
+  <meta name="description" content="Штаб Международной Экспансии и Хаб Продаж Alberta Shirani (Global Spirit Group): Психология личности, глубинная трансформация женщин 30-50 лет, диплом ФРДО РФ, калькулятор окупаемости практики, атлас международной экспансии и AI-аватар.">
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <style>
+    /* Specific styles for index.html */
+    .hub-hero {
+      padding: 50px 0 30px 0;
+      text-align: center;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 36px 0;
+    }
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      transition: var(--transition);
+    }
+    .kpi-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-3px);
+    }
+    .kpi-num {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold-starlight);
+      margin-bottom: 4px;
+    }
+    .kpi-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Founder box */
+    .founder-box {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 32px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(20, 27, 38, 0.9) 0%, rgba(14, 18, 26, 0.9) 100%);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      margin-bottom: 50px;
+      box-shadow: var(--shadow-card);
+    }
+    .founder-avatar-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 0 auto;
+    }
+    .founder-avatar-gem {
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at 30% 30%, #D4AF37 0%, #064E3B 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
+      border: 2px solid var(--border-gold);
+    }
+    .founder-verified-badge {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--emerald-primary);
+      color: #040710;
+      font-weight: 800;
+      font-size: 0.72rem;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Calculator */
+    .calc-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      box-shadow: var(--shadow-glow);
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    .calc-range {
+      width: 100%;
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+      -webkit-appearance: none;
+      margin: 14px 0 24px 0;
+    }
+    .calc-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--gold-starlight);
+      cursor: pointer;
+      box-shadow: 0 0 14px var(--gold-starlight);
+    }
+    .calc-result-panel {
+      background: rgba(10, 14, 22, 0.85);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .calc-big-num {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--gold-starlight);
+      margin: 12px 0 6px 0;
+    }
+
+    /* Kanban */
+    .kanban-board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .kanban-col {
+      background: rgba(16, 22, 32, 0.65);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+    .kanban-col-head {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold-starlight);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .kanban-card {
+      background: rgba(25, 34, 48, 0.85);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 12px;
+      font-size: 0.88rem;
+      transition: var(--transition);
+    }
+    .kanban-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px) {
+      .founder-box { grid-template-columns: 1fr; text-align: center; }
+      .calc-box { grid-template-columns: 1fr; }
+      .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+      .kanban-board { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="quantum-canvas"></canvas>
+
+  <!-- TOP STATUS BAR -->
+  <header class="top-status-bar">
+    <div class="live-indicator">
+      <span class="live-dot"></span>
+      <span>ШТАБ ЭКСПАНСИИ GLOBAL SPIRIT GROUP · ALBERTA SHIRANI ONLINE</span>
+    </div>
+
+    <div class="status-controls">
+      <button class="sound-toggle-btn" onclick="soundEngine.toggleAmbient(this); soundEngine.playTick();">
+        🎵 432Hz Поле: ВЫКЛ
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim);">Валюта:</span>
+        <select id="currencySelector" class="currency-select" onchange="AlbertaCurrency.setCurrency(this.value); soundEngine.playTick();">
+          <option value="USD">USD ($)</option>
+          <option value="RUB" selected>RUB (₽)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="USDT">USDT (₮)</option>
+        </select>
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+        <a href="../index.html" class="btn-secondary" style="padding: 6px 12px; font-size: 0.78rem;">👑 Бренд-Бук & Хаб</a>
+        <a href="https://unityspirit.github.io/remote-agents-control/" target="_blank" class="btn-secondary" style="padding: 6px 12px; font-size: 0.78rem;">🏢 Офис</a>
+        <a href="https://t.me/lermontovplusbot?start=aliashirani" target="_blank" class="btn-primary" style="padding: 6px 14px; font-size: 0.8rem;">
+          🤖 Бот @lermontovplusbot
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+
+    <!-- MASTER NAVIGATION -->
+    <nav class="master-header">
+      <a href="index.html" class="brand-badge">
+        <div class="brand-logo-gem">👑</div>
+        <div class="brand-text">
+          <h1>Alberta Shirani</h1>
+          <span>International Transformation Academy</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Штаб Экспансии</a></li>
+        <li><a href="landing.html" class="nav-link">Лендинг Продаж</a></li>
+        <li><a href="presentation.html" class="nav-link">16:9 Презентация</a></li>
+        <li><a href="miniapp.html" class="nav-link">Telegram Mini App</a></li>
+        <li><a href="avatar-studio.html" class="nav-link">Студия AI-Аватара</a></li>
+        <li><a href="#calculator" class="nav-link">Калькулятор</a></li>
+      </ul>
+
+      <a href="landing.html" class="btn-header-cta" onclick="soundEngine.playChime(528);">
+        🔥 Попробовать Воронку
+      </a>
+    </nav>
+
+    <!-- HUB HERO -->
+    <section class="hub-hero">
+      <div class="section-tag">High-Ticket Психология & Архитектура Опоры</div>
+      <h2 class="section-title">
+        Международная Академия Трансформации Личности Alberta Shirani
+      </h2>
+      <p class="section-desc">
+        Единый командный центр международной экспансии, масштабирования частной практики, автоматизации воронок и обучения женщин 30–50 лет выходу из кризиса, обретению несокрушимой внутренней опоры и выходу в максимальный масштаб жизни.
+      </p>
+
+      <!-- KPI STRIP -->
+      <div class="kpi-strip">
+        <div class="kpi-card">
+          <div class="kpi-num">38+</div>
+          <div class="kpi-label">Стран Присутствия</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">1,400+</div>
+          <div class="kpi-label">Трансформаций Женщин</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">100%</div>
+          <div class="kpi-label">ФРДО & Госреестр РФ</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num" data-price-usd="5200">$5,200</div>
+          <div class="kpi-label">Средний Чек VIP-Ведения</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER BOX -->
+    <section class="founder-box">
+      <div class="founder-avatar-wrap">
+        <div class="founder-avatar-gem">💎</div>
+        <div class="founder-verified-badge">✓ ДИПЛОМ ПСИХОТЕРАПЕВТА</div>
+      </div>
+      <div>
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--gold-starlight);">
+            Ширванян Альберта Макичевна (Alberta Shirani)
+          </h3>
+          <span class="badge-gold">Основательница</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 14px; line-height: 1.6;">
+          Дипломированный психотерапевт-консультант (программа профессиональной переподготовки «Психология личности», г. Москва, рег. реестр ФРДО). Автор системного метода <b>«Архитектура Внутренней Опоры»</b> для зрелых женщин 30–50 лет. Креативный директор и визионер международной экосистемы трансформации.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+          <button class="btn-secondary" style="padding: 8px 18px; font-size: 0.85rem;" onclick="openModal('licenseModal'); soundEngine.playTick();">
+            📜 Посмотреть Гос. Диплом ФРДО
+          </button>
+          <a href="https://t.me/Alberta" target="_blank" class="btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">
+            ✈️ Написать в Личный Telegram
+          </a>
+          <span style="font-size: 0.85rem; color: var(--emerald-primary); display: flex; align-items: center; gap: 6px;">
+            🔐 Global Spirit Group · Партнёрство RevShare 60/40
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE INCOME & EXPANSION CALCULATOR -->
+    <section id="calculator" class="section-padding">
+      <div class="section-head">
+        <div class="section-tag">Калькулятор Монетизации & Окупаемости</div>
+        <h3 class="section-title">Интерактивный Расчёт Дохода Психолога-Наставника</h3>
+        <p class="section-desc">Рассчитайте потенциал вашей частной практики и членства в клубе по авторской методологии Альберты Ширани при выходе на международный рынок.</p>
+      </div>
+
+      <div class="calc-box">
+        <div>
+          <div style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between;">
+              <label style="font-weight: 600; font-size: 0.95rem;">Стоимость 1 индивидуальной сессии:</label>
+              <span id="calcPriceDisplay" style="color: var(--gold-starlight); font-family: var(--font-mono); font-weight: 700;">$150</span>
+            </div>
+            <input type="range" id="calcPrice" class="calc-range" min="40" max="600" step="10" value="150" oninput="updateCalculator();">
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between;">
+              <label style="font-weight: 600; font-size: 0.95rem;">Количество сессий в месяц:</label>
+              <span id="calcSessionsDisplay" style="color: var(--emerald-primary); font-family: var(--font-mono); font-weight: 700;">20 сессий</span>
+            </div>
+            <input type="range" id="calcSessions" class="calc-range" min="4" max="60" step="2" value="20" oninput="updateCalculator();">
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between;">
+              <label style="font-weight: 600; font-size: 0.95rem;">Резиденты Закрытого Клуба ($50/мес):</label>
+              <span id="calcClubDisplay" style="color: var(--gold-light); font-family: var(--font-mono); font-weight: 700;">50 участниц</span>
+            </div>
+            <input type="range" id="calcClub" class="calc-range" min="0" max="300" step="10" value="50" oninput="updateCalculator();">
+          </div>
+        </div>
+
+        <div class="calc-result-panel">
+          <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dim);">Ежемесячный доход:</span>
+          <div id="calcMonthlyTotal" class="calc-big-num">$5,500</div>
+          <span id="calcAnnualTotal" style="font-size: 0.9rem; color: var(--emerald-primary); margin-bottom: 18px;">$66,000 / год</span>
+          
+          <a id="calcTelegramLink" href="https://t.me/Alberta" target="_blank" class="btn-primary" style="width: 100%; font-size: 0.85rem;" onclick="soundEngine.playChime(528);">
+            ⚡ Отправить расчёт Альберте
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 LEVELS OF TRANSFORMATION (PRODUCT MATRIX) -->
+    <section class="section-padding">
+      <div class="section-head">
+        <div class="section-tag">Продуктовая Матрица</div>
+        <h3 class="section-title">4 Ступени Архитектуры Личности</h3>
+        <p class="section-desc">Системный путь клиента от первого бесплатного касания до глубокого VIP-сопровождения.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="glass-card">
+          <span class="badge-gold">Ступень 1 · Вход</span>
+          <h4 style="font-size: 1.25rem; font-family: var(--font-heading); margin: 12px 0 8px 0; color: var(--text-main);">Лид-Магнит</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">
+            Интерактивный 3-шаговый Telegram-аудит утечек энергии и диагностика ведущего архетипа личности.
+          </p>
+          <div style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--emerald-primary); font-weight: 700;">
+            Бесплатно
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <span class="badge-emerald">Ступень 2 · Трипваер</span>
+          <h4 style="font-size: 1.25rem; font-family: var(--font-heading); margin: 12px 0 8px 0; color: var(--text-main);">Интенсив «Точка Сборки»</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">
+            5 дней терапевтического аудио-погружения для экстренной остановки тревоги и сборки первичной опоры.
+          </p>
+          <div style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold-starlight); font-weight: 700;" data-price-usd="5">
+            490 ₽
+          </div>
+        </div>
+
+        <div class="glass-card" style="border-color: var(--border-gold);">
+          <span class="badge-gold">Ступень 3 · Флагман</span>
+          <h4 style="font-size: 1.25rem; font-family: var(--font-heading); margin: 12px 0 8px 0; color: var(--gold-starlight);">Закрытый Клуб</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">
+            «Искусство Выбирать Себя»: еженедельные онлайн-разборы с Альбертой, живой круг сильных женщин 30–50 лет.
+          </p>
+          <div style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold-starlight); font-weight: 700;" data-price-usd="50">
+            $50 / мес
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <span class="badge-gold">Ступень 4 · High-Ticket</span>
+          <h4 style="font-size: 1.25rem; font-family: var(--font-heading); margin: 12px 0 8px 0; color: var(--text-main);">VIP Архитектура Опоры</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 16px;">
+            3 месяца персонального наставничества Альберты Shirani. Пересборка сценариев жизни, границ и масштаба.
+          </p>
+          <div style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold-starlight); font-weight: 700;" data-price-usd="2500">
+            $2,500
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GEOGRAPHY ATLAS -->
+    <section class="section-padding">
+      <div class="section-head">
+        <div class="section-tag">Международная Экспансия</div>
+        <h3 class="section-title">Интерактивный Атлас Географии Продаж</h3>
+        <p class="section-desc">Условия и адаптация премиального позиционирования Альберты Shirani по ключевым мировым хабам.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="glass-card">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">🇦🇪</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--gold-starlight);">ОАЭ (Дубай & Абу-Даби)</h4>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin: 8px 0 14px 0;">
+            Огромная концентрация русскоязычных предпринимательниц и экспатов. Фокус на статус, сепарацию от золотой клетки и баланс карьеры и семьи.
+          </p>
+          <span class="badge-gold">Средний чек: $350–$800</span>
+        </div>
+
+        <div class="glass-card">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">🇪🇺</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--gold-starlight);">Евросоюз (Германия, Испания, Кипр)</h4>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin: 8px 0 14px 0;">
+            Женщины в релокации, потеря привычных социальных кругов, синдром самозванца при открытии бизнеса в Европе.
+          </p>
+          <span class="badge-emerald">Средний чек: €150–€400</span>
+        </div>
+
+        <div class="glass-card">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">🇺🇸</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--gold-starlight);">США & Канада (Майами, Нью-Йорк, LA)</h4>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin: 8px 0 14px 0;">
+            Высокий спрос на регулярную терапию с носителем культурного кода. Оплата в USD через Stripe / криптовалюту.
+          </p>
+          <span class="badge-gold">Средний чек: $200–$500</span>
+        </div>
+
+        <div class="glass-card">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">🇮🇩</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--gold-starlight);">Азия & Бали</h4>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin: 8px 0 14px 0;">
+            Трансформационные очные ретриты, духовные поиски, объединение квантовых практик с твердой классической психологией личности.
+          </p>
+          <span class="badge-gold">Средний чек: $150–$350</span>
+        </div>
+
+        <div class="glass-card">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">🇷🇺</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--gold-starlight);">Россия & СНГ (Москва, СПБ, регионы)</h4>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin: 8px 0 14px 0;">
+            Базовый фундамент аудитории блога Альберты. Официальный диплом ФРДО даёт 100% доверие и легитимность.
+          </p>
+          <span class="badge-emerald">Средний чек: 15 000 – 50 000 ₽</span>
+        </div>
+
+        <div class="glass-card">
+          <div style="font-size: 1.8rem; margin-bottom: 8px;">🇮🇱</div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--gold-starlight);">Израиль (Тель-Авив & Хайфа)</h4>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin: 8px 0 14px 0;">
+            Адаптация в условиях хронического стресса, сохранение ментального здоровья детей и личных опор.
+          </p>
+          <span class="badge-gold">Средний чек: $180–$400</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4-TIER INTERACTIVE TASK COMMAND BOARD + 21-DAY ROADMAP -->
+    <section class="section-padding" id="tasksBoardSection">
+      <div class="section-head">
+        <div class="section-tag">Командный Пульт Задач · 4 Категории</div>
+        <h3 class="section-title">Удобная Матрица Задач Альберты</h3>
+        <p class="section-desc">Чёткое разделение фокуса: Сегодняшние (включая свежие запросы 12.11), Главные, Промежуточные и Параллельные потоки ИИ-агентов.</p>
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:20px;" id="intlTierFilters">
+        <button class="btn-primary" style="padding:7px 14px; font-size:0.82rem;" onclick="filterIntlTasks('all', this)">🌐 Все (4 группы)</button>
+        <button class="btn-secondary" style="padding:7px 14px; font-size:0.82rem; border-color:rgba(244,63,94,0.55); color:#FDA4AF;" onclick="filterIntlTasks('today', this)">🔥 Сегодняшние</button>
+        <button class="btn-secondary" style="padding:7px 14px; font-size:0.82rem; border-color:rgba(212,175,55,0.55); color:#F3E5AB;" onclick="filterIntlTasks('main', this)">🎯 Главные</button>
+        <button class="btn-secondary" style="padding:7px 14px; font-size:0.82rem; border-color:rgba(168,85,247,0.55); color:#D8B4FE;" onclick="filterIntlTasks('intermediate', this)">🪜 Промежуточные</button>
+        <button class="btn-secondary" style="padding:7px 14px; font-size:0.82rem; border-color:rgba(56,189,248,0.55); color:#7DD3FC;" onclick="filterIntlTasks('parallel', this)">⚡ Параллельные</button>
+      </div>
+
+      <div class="kanban-board" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));" id="intlTasksBoard">
+        <div class="kanban-col" data-tier="today" style="border-top: 3px solid #F43F5E;">
+          <div class="kanban-col-head" style="color:#FDA4AF;">
+            <span>🔥 Сегодняшние (12.11)</span>
+            <span>4 задачи</span>
+          </div>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="it-50">
+            <span><b>#50 Главный триггер 30–50 + Мини-продукт:</b> разбор болей по соцсетям и создание мини-продукта без возражений.</span>
+          </label>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="it-49" checked>
+            <span><b>#49 Ниша Клуба (Обновлено):</b> фокус строго на трансформации женщин 30–50 (опора, уверенность, стиль, доход, отношения, тревожность, желания).</span>
+          </label>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="it-48">
+            <span><b>#48 Telegram-бот @lermontovplusbot:</b> архитектура подписки на 1 000 000 ₽ и активация старта.</span>
+          </label>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="it-47">
+            <span><b>#47 Быстрые клиенты:</b> первые платные диагностики за 72 часа.</span>
+          </label>
+        </div>
+
+        <div class="kanban-col" data-tier="main" style="border-top: 3px solid #D4AF37;">
+          <div class="kanban-col-head">
+            <span>🎯 Главные задачи</span>
+            <span>Стратегия</span>
+          </div>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="im-1">
+            <span><b>💎 Закрыть 3 VIP-контракта ($2,500):</b> Личная «Архитектура Внутренней Опоры».</span>
+          </label>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="im-2">
+            <span><b>👑 Запустить Закрытый Клуб ($50–$150/мес):</b> набор первых 50–100 резидентов.</span>
+          </label>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="im-3">
+            <span><b>📈 Фиксация выручки 1 000 000+ ₽/мес:</b> связка Трипваер → Клуб → VIP.</span>
+          </label>
+        </div>
+
+        <div class="kanban-col" data-tier="intermediate" style="border-top: 3px solid #A855F7;">
+          <div class="kanban-col-head" style="color:#D8B4FE;">
+            <span>🪜 Промежуточные</span>
+            <span>Подготовка</span>
+          </div>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="ii-1">
+            <span><b>🤖 Нажать /start в @lermontovplusbot:</b> привязка личного ИИ-директора к аккаунту Альберты.</span>
+          </label>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="ii-2">
+            <span><b>💳 Подключить ЮKassa / Stripe:</b> приём оплат РФ и за рубежом.</span>
+          </label>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="ii-3">
+            <span><b>🎬 Записать 30-сек приветствие:</b> для Лендинга и Telegram Mini App.</span>
+          </label>
+        </div>
+
+        <div class="kanban-col" data-tier="parallel" style="border-top: 3px solid #38BDF8;">
+          <div class="kanban-col-head" style="color:#7DD3FC;">
+            <span>⚡ Параллельные (24/7)</span>
+            <span>Авто-поток</span>
+          </div>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="ip-1" checked>
+            <span><b>🚀 AI-Аватар HeyGen + VEO 3.1:</b> авто-генерация рилс на 5 языках (ОАЭ, ЕС, США, РФ).</span>
+          </label>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="ip-2" checked>
+            <span><b>🌍 Международная экспансия:</b> Дубай, Германия, Испания, Кипр, США.</span>
+          </label>
+          <label class="kanban-card" style="display:flex; gap:10px; align-items:flex-start; cursor:pointer;">
+            <input type="checkbox" class="intl-task-chk" data-tid="ip-3" checked>
+            <span><b>🧠 Синхронизация Хаба и Офиса:</b> непрерывный контроль через Global Spirit Group.</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDENT & PARTNER NOTES -->
+    <section class="section-padding">
+      <div class="glass-card">
+        <h4 style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--gold-starlight); margin-bottom: 12px;">
+          📝 Рабочий Блокнот Партнёра / Заметки Альберты
+        </h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 14px;">
+          Заметки автоматически сохраняются в вашем браузере (LocalStorage) и защищены от потери.
+        </p>
+        <textarea id="hubNotes" style="width: 100%; min-height: 120px; background: rgba(8, 11, 16, 0.85); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 14px; color: var(--text-main); font-family: var(--font-sans); font-size: 0.95rem; resize: vertical;" placeholder="Запишите идеи по контенту, инсайты с сессий или стратегические задачи..."></textarea>
+        
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px;">
+          <button class="btn-secondary" style="padding: 8px 18px; font-size: 0.85rem;" onclick="exportNotes(); soundEngine.playTick();">
+            📥 Экспорт в JSON
+          </button>
+          <button class="btn-primary" style="padding: 8px 18px; font-size: 0.85rem;" onclick="saveNotes(); soundEngine.playChime(528);">
+            💾 Сохранить Заметку
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 40px 0 20px 0; border-top: 1px solid var(--border-glass); color: var(--text-dim); font-size: 0.85rem;">
+      <p style="margin-bottom: 8px;">
+        © 2026 Международная Академия Трансформации Личности Alberta Shirani. Все права защищены.
+      </p>
+      <p>
+        Продюсерский & Технический Хаб: <b>Global Spirit Group</b> (RevShare Partnership) · Диплом ФРДО РФ
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- DIPLOMA / LICENSE MODAL -->
+  <div id="licenseModal" class="modal-overlay" onclick="if(event.target === this) closeModal('licenseModal');">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('licenseModal');">&times;</button>
+      <span class="badge-emerald" style="margin-bottom: 12px; display: inline-block;">Официальная Легитимность</span>
+      <h3 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--gold-starlight); margin-bottom: 12px;">
+        Государственный Диплом & Аккредитация
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px;">
+        <b>Слушатель:</b> Ширванян Альберта Макичевна (Alberta Shirani)<br>
+        <b>Программа:</b> Профессиональная переподготовка «Психотерапевт-консультант»<br>
+        <b>Квалификационная работа:</b> «Психология личности», г. Москва, 2025 г.<br>
+        <b>Реестр ФРДО:</b> Официальное внесение в Федеральный реестр сведений о документах об образовании РФ с правом ведения профессиональной деятельности.
+      </p>
+      <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid var(--border-emerald); border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;">
+        <span style="color: var(--emerald-primary); font-weight: 700;">✓ Право ведения профессиональной деятельности:</span>
+        <p style="color: var(--text-main); font-size: 0.85rem; margin-top: 6px;">
+          Дает юридическое основание проводить терапевтические и трансформационные консультации, запускать образовательные курсы и выдавать сертификаты международного образца.
+        </p>
+      </div>
+      <button class="btn-primary" style="width: 100%;" onclick="closeModal('licenseModal');">
+        Понятно, закрыть
+      </button>
+    </div>
+  </div>
+
+  <script src="assets/js/audio-synth.js"></script>
+  <script src="assets/js/currency.js"></script>
+  <script src="assets/js/quantum-canvas.js"></script>
+
+  <script>
+    // Modal Helpers
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.style.display = 'flex';
+    }
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.style.display = 'none';
+    }
+
+    // Live Calculator Logic
+    function updateCalculator() {
+      const priceUSD = parseFloat(document.getElementById('calcPrice').value);
+      const sessions = parseFloat(document.getElementById('calcSessions').value);
+      const clubMembers = parseFloat(document.getElementById('calcClub').value);
+
+      // Display inputs
+      document.getElementById('calcPriceDisplay').innerText = AlbertaCurrency.format(priceUSD);
+      document.getElementById('calcSessionsDisplay').innerText = `${sessions} сессий`;
+      document.getElementById('calcClubDisplay').innerText = `${clubMembers} участниц`;
+
+      // Calculations: Individual + Club ($50/member)
+      const monthlyUSD = (priceUSD * sessions) + (clubMembers * 50);
+      const annualUSD = monthlyUSD * 12;
+
+      document.getElementById('calcMonthlyTotal').innerText = AlbertaCurrency.format(monthlyUSD);
+      document.getElementById('calcAnnualTotal').innerText = `${AlbertaCurrency.format(annualUSD)} / год`;
+
+      // Dynamic Telegram message link
+      const text = encodeURIComponent(
+        `Здравствуйте, Альберта! Я рассчитала прогноз в вашем Штабе Экспансии:\n` +
+        `• Сессии: ${sessions} по ${AlbertaCurrency.format(priceUSD)}\n` +
+        `• Клуб: ${clubMembers} резидентов\n` +
+        `• Прогноз дохода: ${AlbertaCurrency.format(monthlyUSD)}/мес.\n` +
+        `Хочу разобрать точки роста моей практики!`
+      );
+      document.getElementById('calcTelegramLink').href = `https://t.me/Alberta?text=${text}`;
+    }
+
+    window.addEventListener('alberta-currency-changed', updateCalculator);
+
+    // Notes LocalStorage
+    function saveNotes() {
+      const text = document.getElementById('hubNotes').value;
+      localStorage.setItem('alberta_hub_notes', text);
+      alert('Заметка сохранена!');
+    }
+    function loadNotes() {
+      const saved = localStorage.getItem('alberta_hub_notes');
+      if (saved) document.getElementById('hubNotes').value = saved;
+    }
+    function exportNotes() {
+      const text = document.getElementById('hubNotes').value;
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ notes: text, date: new Date().toISOString() }));
+      const a = document.createElement('a');
+      a.setAttribute("href", dataStr);
+      a.setAttribute("download", `alberta_notes_${Date.now()}.json`);
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    function filterIntlTasks(tier, btn) {
+      document.querySelectorAll('#intlTierFilters button').forEach(b => {
+        b.className = 'btn-secondary';
+      });
+      if (btn) btn.className = 'btn-primary';
+      document.querySelectorAll('#intlTasksBoard .kanban-col').forEach(col => {
+        col.style.display = (tier === 'all' || col.getAttribute('data-tier') === tier) ? 'block' : 'none';
+      });
+    }
+
+    function initIntlTaskCheckboxes() {
+      const saved = JSON.parse(localStorage.getItem('alberta_intl_tasks_v1') || '{}');
+      document.querySelectorAll('.intl-task-chk').forEach(chk => {
+        const id = chk.getAttribute('data-tid');
+        if (saved[id] !== undefined) chk.checked = Boolean(saved[id]);
+        chk.addEventListener('change', () => {
+          const cur = JSON.parse(localStorage.getItem('alberta_intl_tasks_v1') || '{}');
+          cur[id] = chk.checked;
+          localStorage.setItem('alberta_intl_tasks_v1', JSON.stringify(cur));
+          if (typeof soundEngine !== 'undefined') soundEngine.playTick();
+        });
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadNotes();
+      updateCalculator();
+      initIntlTaskCheckboxes();
+    });
+  </script>
+</body>
+</html>
